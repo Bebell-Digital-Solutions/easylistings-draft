@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Conozca su Cliente</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --border-color: #ccc;
+            --bg-color: #f4f6f8;
+            --input-bg: #fff;
+            --focus-color: #3498db;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .date-section {
+            position: absolute;
+            right: 0;
+            top: 0;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 14px;
+        }
+
+        h1 {
+            font-size: 20px;
+            margin: 0 0 5px 0;
+            text-transform: uppercase;
+            text-decoration: underline;
+        }
+
+        h2 {
+            font-size: 16px;
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        h3 {
+            font-size: 15px;
+            background-color: #e9ecef;
+            padding: 8px 10px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            text-align: center;
+            border-radius: 4px;
+        }
+
+        /* Form Layout */
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-size: 13px;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        input[type="email"],
+        input[type="tel"],
+        select,
+        textarea {
+            padding: 8px 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 14px;
+            background-color: var(--input-bg);
+            transition: border-color 0.3s;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--focus-color);
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+        }
+
+        /* Radio & Checkbox styling */
+        .radio-group, .checkbox-group {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            padding-top: 5px;
+        }
+
+        .radio-group label, .checkbox-group label {
+            font-weight: normal;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        /* Tables for References */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+        }
+
+        td input {
+            width: 100%;
+            border: none;
+            padding: 4px;
+            background: transparent;
+        }
+        
+        td input:focus {
+            box-shadow: none;
+            background: #f0f8ff;
+        }
+
+        /* Utility Classes */
+        .hidden {
+            display: none !important;
+        }
+
+        .btn-submit {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 30px;
+            transition: background-color 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: #1a252f;
+        }
+
+        .footer-text {
+            font-size: 10px;
+            color: #777;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            .date-section {
+                position: relative;
+                justify-content: center;
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <form id="kycForm">
+        
+        <div class="header">
+            <div class="date-section">
+                <label>Fecha:</label>
+                <input type="date" id="formDate">
+            </div>
+            <h1>FORMULARIO CONOZCA SU CLIENTE</h1>
+            <h2>PERSONA NATURAL / FÍSICA</h2>
+        </div>
+        
+        
+        
+        
+        
+
+        <!-- DATOS PERSONALES -->
+        <div class="form-row">
+            <div class="form-group full-width">
+                <label>Nombre Completo:</label>
+                <input type="text" name="nombreCompleto" required>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label>Nacionalidad:</label>
+                <input type="text" name="nacionalidad">
+            </div>
+            <div class="form-group">
+                <label>Cédula de Identidad:</label>
+                <input type="text" name="cedula">
+            </div>
+            <div class="form-group">
+                <label>País emisor de la céd:</label>
+                <input type="text" name="paisCedula">
+            </div>
+            <div class="form-group">
+                <label>Fecha de vencimiento Céd.:</label>
+                <input type="date" name="vencimientoCedula">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label>Sexo:</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="sexo" value="M"> M</label>
+                    <label><input type="radio" name="sexo" value="F"> F</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Pasaporte No.:</label>
+                <input type="text" name="pasaporte">
+            </div>
+            <div class="form-group">
+                <label>Tipo de pasaporte:</label>
+                <input type="text" name="tipoPasaporte">
+            </div>
+            <div class="form-group">
+                <label>Fecha de Nacimiento:</label>
+                <input type="date" name="fechaNacimiento">
+            </div>
+            <div class="form-group">
+                <label>País de Nacimiento:</label>
+                <input type="text" name="paisNacimiento">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label>Segunda Nacionalidad (Si aplica):</label>
+                <input type="text" name="segundaNacionalidad">
+            </div>
+            <div class="form-group">
+                <label>Estado Civil:</label>
+                <select name="estadoCivil" id="estadoCivil">
+                    <option value="">Seleccione...</option>
+                    <option value="Soltero/a">Soltero/a</option>
+                    <option value="Casado/a">Casado/a</option>
+                    <option value="Divorciado/a">Divorciado/a</option>
+                    <option value="Viudo/a">Viudo/a</option>
+                    <option value="Unión Libre">Unión Libre</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Sección Cónyuge (Oculta por defecto) -->
+        <div id="seccionConyuge" class="hidden">
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Nombre del Cónyuge:</label>
+                    <input type="text" name="nombreConyuge">
+                </div>
+                <div class="form-group">
+                    <label>No. Documento Cónyuge:</label>
+                    <input type="text" name="docConyuge">
+                </div>
+                <div class="form-group">
+                    <label>País emisor del doc:</label>
+                    <input type="text" name="paisDocConyuge">
+                </div>
+                <div class="form-group">
+                    <label>Celular Cónyuge:</label>
+                    <input type="tel" name="celularConyuge">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label>Correo E. 1:</label>
+                <input type="email" name="correo1">
+            </div>
+            <div class="form-group">
+                <label>Correo E. 2:</label>
+                <input type="email" name="correo2">
+            </div>
+            <div class="form-group">
+                <label>Tel. Casa:</label>
+                <input type="tel" name="telCasa">
+            </div>
+            <div class="form-group">
+                <label>Celular:</label>
+                <input type="tel" name="celular">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group full-width">
+                <label>Calle / Avenida y No:</label>
+                <input type="text" name="calle">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label>Residencial:</label>
+                <input type="text" name="residencial">
+            </div>
+            <div class="form-group">
+                <label>Apto:</label>
+                <input type="text" name="apto">
+            </div>
+            <div class="form-group">
+                <label>Cód. Postal:</label>
+                <input type="text" name="codPostal">
+            </div>
+            <div class="form-group">
+                <label>País:</label>
+                <input type="text" name="paisResidencia">
+            </div>
+            <div class="form-group">
+                <label>Provincia:</label>
+                <input type="text" name="provincia">
+            </div>
+            <div class="form-group">
+                <label>Sector:</label>
+                <input type="text" name="sector">
+            </div>
+        </div>
+
+        <!-- DATOS DE EMPLEO -->
+        <h3>DATOS DE EMPLEO</h3>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Trabaja:</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="trabaja" value="Si" id="trabajaSi"> Sí</label>
+                    <label><input type="radio" name="trabaja" value="No" id="trabajaNo"> No</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Condición:</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="condicion" value="Empleado"> Empleado</label>
+                    <label><input type="radio" name="condicion" value="Propietario"> Propietario</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Tel. Oficina:</label>
+                <input type="tel" name="telOficina">
+            </div>
+        </div>
+
+        <div id="detallesEmpleo" class="hidden">
+            <div class="form-row">
+                <div class="form-group full-width">
+                    <label>Lugar de trabajo:</label>
+                    <input type="text" name="lugarTrabajo">
+                </div>
+                <div class="form-group full-width">
+                    <label>Correo Empresarial:</label>
+                    <input type="email" name="correoEmpresarial">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Ocupación/Cargo:</label>
+                    <input type="text" name="ocupacion">
+                </div>
+                <div class="form-group">
+                    <label>Profesión / oficio:</label>
+                    <input type="text" name="profesion">
+                </div>
+                <div class="form-group">
+                    <label>Supervisor Directo:</label>
+                    <input type="text" name="supervisor">
+                </div>
+                <div class="form-group">
+                    <label>Tiempo en la compañía:</label>
+                    <input type="text" name="tiempoCompania">
+                </div>
+            </div>
+        </div>
+
+        <!-- PERFIL FINANCIERO -->
+        <h3>PERFIL FINANCIERO</h3>
+        <div class="form-row">
+            <div class="form-group full-width">
+                <label>Ingresos anuales actividad principal:</label>
+                <div class="checkbox-group" style="flex-wrap: wrap;">
+                    <label><input type="radio" name="ingresoPrincipal" value="Menos de US$ 10,000"> Menos de US$ 10,000</label>
+                    <label><input type="radio" name="ingresoPrincipal" value="Más de US$ 10,000"> Más de US$ 10,000</label>
+                    <label><input type="radio" name="ingresoPrincipal" value="US$ 30,000 a $50,000"> US$ 30,000 a $50,000</label>
+                    <label><input type="radio" name="ingresoPrincipal" value="US$ 50,000 a $80,000"> US$ 50,000 a $80,000</label>
+                    <label><input type="radio" name="ingresoPrincipal" value="Más de US$ 80,000"> Más de US$ 80,000</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group full-width">
+                <label>Ingresos anuales por otras actividades:</label>
+                <div class="checkbox-group" style="flex-wrap: wrap;">
+                    <label><input type="radio" name="ingresoOtros" value="Menos de US$ 10,000"> Menos de US$ 10,000</label>
+                    <label><input type="radio" name="ingresoOtros" value="Más de US$ 10,000"> Más de US$ 10,000</label>
+                    <label><input type="radio" name="ingresoOtros" value="US$ 30,000 a $50,000"> US$ 30,000 a $50,000</label>
+                    <label><input type="radio" name="ingresoOtros" value="US$ 50,000 a $80,000"> US$ 50,000 a $80,000</label>
+                    <label><input type="radio" name="ingresoOtros" value="Más de US$ 80,000"> Más de US$ 80,000</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- ORIGEN DE LOS FONDOS -->
+        <h3>Origen de Los Fondos</h3>
+        <div class="form-row">
+            <div class="form-group full-width">
+                <div class="checkbox-group" style="flex-wrap: wrap;">
+                    <label><input type="checkbox" name="origenFondos" value="Ahorros provenientes del salario"> Ahorros provenientes del salario</label>
+                    <label><input type="checkbox" name="origenFondos" value="Salarios o ingresos actuales"> Salarios o ingresos actuales</label>
+                    <label><input type="checkbox" name="origenFondos" value="Venta de propiedades o inversiones anteriores"> Venta de propiedades o inversiones anteriores</label>
+                    <label><input type="checkbox" name="origenFondos" value="Retiro/ Fondo de pensión"> Retiro/ Fondo de pensión</label>
+                    <label><input type="checkbox" name="origenFondos" value="Herencia"> Herencia</label>
+                    <label><input type="checkbox" name="origenFondos" value="Otros"> Otros</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group full-width">
+                <label>Describir actividad económica de otros ingresos:</label>
+                <textarea name="descripcionOtrosIngresos" rows="2"></textarea>
+            </div>
+        </div>
+
+        <!-- REFERENCIAS -->
+        <h3>REFERENCIAS PERSONALES</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre y Apellido</th>
+                    <th>Institución</th>
+                    <th>Relación</th>
+                    <th>Antigüedad de Relación</th>
+                    <th>Teléfono</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="text" name="refPer1Nombre"></td>
+                    <td><input type="text" name="refPer1Inst"></td>
+                    <td><input type="text" name="refPer1Rel"></td>
+                    <td><input type="text" name="refPer1Ant"></td>
+                    <td><input type="tel" name="refPer1Tel"></td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="refPer2Nombre"></td>
+                    <td><input type="text" name="refPer2Inst"></td>
+                    <td><input type="text" name="refPer2Rel"></td>
+                    <td><input type="text" name="refPer2Ant"></td>
+                    <td><input type="tel" name="refPer2Tel"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>BANCARIAS</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre y Apellido</th>
+                    <th>Institución</th>
+                    <th>Relación</th>
+                    <th>Antigüedad de Relación</th>
+                    <th>Teléfono</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="text" name="refBan1Nombre"></td>
+                    <td><input type="text" name="refBan1Inst"></td>
+                    <td><input type="text" name="refBan1Rel"></td>
+                    <td><input type="text" name="refBan1Ant"></td>
+                    <td><input type="tel" name="refBan1Tel"></td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="refBan2Nombre"></td>
+                    <td><input type="text" name="refBan2Inst"></td>
+                    <td><input type="text" name="refBan2Rel"></td>
+                    <td><input type="text" name="refBan2Ant"></td>
+                    <td><input type="tel" name="refBan2Tel"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- PERSONAS POLÍTICAMENTE EXPUESTAS -->
+        <h3>PERSONAS POLÍTICAMENTE EXPUESTAS</h3>
+        <p style="font-size: 12px; text-align: justify; margin-bottom: 15px;">
+            Las personas políticamente expuestas son aquellas que desempeñan o han desempeñado funciones públicas destacadas en un país extranjero o en su propio país, por ejemplo, jefes de Estado o de un gobierno, políticos de alta jerarquía, funcionarios gubernamentales, judiciales o militares de alta jerarquía, altos ejecutivos de empresas estatales, funcionarios importantes de partidos políticos.
+        </p>
+        <div class="form-row">
+            <div class="form-group full-width">
+                <label>¿Es usted una persona políticamente expuesta?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="esPEP" value="Si" id="pepSi"> Sí</label>
+                    <label><input type="radio" name="esPEP" value="No" id="pepNo"> No</label>
+                </div>
+            </div>
+        </div>
+
+        <div id="detallesPEP" class="hidden">
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Cargo actual o anterior:</label>
+                    <input type="text" name="cargoPEP">
+                </div>
+                <div class="form-group">
+                    <label>País:</label>
+                    <input type="text" name="paisPEP">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group full-width">
+                    <label>¿Tiene algún parentesco con una persona políticamente expuesta?</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="parentescoPEP" value="Si"> Sí</label>
+                        <label><input type="radio" name="parentescoPEP" value="No"> No</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Nombre del funcionario:</label>
+                    <input type="text" name="nombreFuncionarioPEP">
+                </div>
+                <div class="form-group">
+                    <label>Cargo:</label>
+                    <input type="text" name="cargoFuncionarioPEP">
+                </div>
+                <div class="form-group">
+                    <label>Tipo de relación:</label>
+                    <input type="text" name="relacionPEP">
+                </div>
+            </div>
+        </div>
+
+        <!-- DECLARACIÓN FATCA -->
+        <h3>Declaración FATCA</h3>
+        <div class="form-row">
+            <div class="form-group full-width">
+                <label>a. Declaro que soy una persona que reside o nació en los Estados Unidos de América</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="fatcaA" value="SI"> SI</label>
+                    <label><input type="radio" name="fatcaA" value="NO"> NO</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group full-width">
+                <label>b. Declaro que soy ciudadano o he sido ciudadano de los Estados Unidos de América.</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="fatcaB" value="SI"> SI</label>
+                    <label><input type="radio" name="fatcaB" value="NO"> NO</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group full-width">
+                <label>c. Declaro que estoy en proceso de adquirir Ciudadanía o Residencia en los Estados Unidos de América.</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="fatcaC" value="Si"> Si</label>
+                    <label><input type="radio" name="fatcaC" value="NO"> NO</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group full-width">
+                <label>d. Declara que tiene una permanencia significativa en los Estados Unidos de América</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="fatcaD" value="SI"> SI</label>
+                    <label><input type="radio" name="fatcaD" value="NO"> NO</label>
+                </div>
+            </div>
+        </div>
+
+        <p style="font-size: 11px; font-style: italic; margin-top: 15px;">
+            NOTA: En caso de responder afirmativamente a los literales anteriores debe diligenciar el formato que corresponde (W-8BEN/ W-8BEN-E/ W-9) o el que indique la norma.
+        </p>
+
+        <button type="submit" class="btn-submit">Enviar Formulario</button>
+    </form>
+
+    <div class="footer-text">
+        <strong>Client Brand</strong><br>
+        Tel. [Client Phone Number] Correo: [Client Email Address]<br>
+        [Client Catalog URL]
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // 1. Set today's date by default
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('formDate').value = today;
+
+        // 2. Logic to show/hide Spouse Info based on Marital Status
+        const estadoCivil = document.getElementById('estadoCivil');
+        const seccionConyuge = document.getElementById('seccionConyuge');
+
+        estadoCivil.addEventListener('change', function() {
+            if (this.value === 'Casado/a' || this.value === 'Unión Libre') {
+                seccionConyuge.classList.remove('hidden');
+            } else {
+                seccionConyuge.classList.add('hidden');
+            }
+        });
+
+        // 3. Logic to show/hide Employment Details
+        const trabajaSi = document.getElementById('trabajaSi');
+        const trabajaNo = document.getElementById('trabajaNo');
+        const detallesEmpleo = document.getElementById('detallesEmpleo');
+
+        function toggleEmpleo() {
+            if (trabajaSi.checked) {
+                detallesEmpleo.classList.remove('hidden');
+            } else if (trabajaNo.checked) {
+                detallesEmpleo.classList.add('hidden');
+            }
+        }
+
+        trabajaSi.addEventListener('change', toggleEmpleo);
+        trabajaNo.addEventListener('change', toggleEmpleo);
+
+        // 4. Logic to show/hide PEP Details
+        const pepSi = document.getElementById('pepSi');
+        const pepNo = document.getElementById('pepNo');
+        const detallesPEP = document.getElementById('detallesPEP');
+
+        function togglePEP() {
+            if (pepSi.checked) {
+                detallesPEP.classList.remove('hidden');
+            } else if (pepNo.checked) {
+                detallesPEP.classList.add('hidden');
+            }
+        }
+
+        pepSi.addEventListener('change', togglePEP);
+        pepNo.addEventListener('change', togglePEP);
+
+        // 5. Form Submission Logic (Demo)
+        const form = document.getElementById('kycForm');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent page reload
+            
+            // Gather data (basic example)
+            const formData = new FormData(form);
+            const data = {};
+            formData.forEach((value, key) => {
+                // Handle multiple checkboxes
+                if(data[key]) {
+                    if(!Array.isArray(data[key])) {
+                        data[key] = [data[key]];
+                    }
+                    data[key].push(value);
+                } else {
+                    data[key] = value;
+                }
+            });
+
+            // Simulate a successful submission
+            alert("¡Formulario enviado con éxito! (Revisa la consola para ver los datos capturados)");
+            console.log("Datos del Formulario:", data);
+            
+            // Optional: Reset form after submission
+            // form.reset();
+            // document.querySelectorAll('.hidden').forEach(el => {
+            //     if(el.id !== 'detallesPEP' && el.id !== 'detallesEmpleo' && el.id !== 'seccionConyuge') {
+            //         // keep hidden states
+            //     }
+            // });
+        });
+    });
+</script>
+
+</body>
+</html>

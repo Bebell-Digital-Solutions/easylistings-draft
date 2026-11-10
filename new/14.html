@@ -1,0 +1,3641 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="meta-title">EasyListings | Software Inmobiliario y CRM en República Dominicana</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: { brand: { blue: '#1A00FF', green: '#4BFF4B' } },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'spin-slow': 'spin 12s linear infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Caveat:wght@700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    
+    
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    
+    
+
+    <style>
+        :root {
+            --primary: #DF1783;
+            --primary-hover: #c71575;
+            --primary-light: #fdeefa;
+            --secondary: #2d3748;
+            --text: #2d3748;
+            --text-light: #718096;
+            --bg: #f7fafc;
+            --card-bg: #ffffff;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --border-color: #e2e8f0;
+            --faq-bg: #2d3748;
+            --submenu-hover: #fdeefa;
+        }
+
+
+
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        
+        
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        
+        
+
+        :root {
+            --bg: #FAF8F5;
+            --bg-alt: #F2EFE9;
+            --card-bg: #FFFFFF;
+            --fg: #0E0E10;
+            --muted: #5C5C63;
+            --primary: #DF1783;
+            --primary-hover: #C21170;
+            --primary-soft: #FDEEFA;
+            --brand-emerald: #0F6E5C;
+            --brand-emerald-soft: #E6F4F1;
+            --accent-gold: #E8B44C;
+            --whatsapp: #25D366;
+            --danger: #C33A2B;
+            --border: #E5E1DA;
+            --shadow-sm: 0 4px 20px -2px rgba(14, 14, 16, 0.05);
+            --shadow-lg: 0 20px 40px -15px rgba(14, 14, 16, 0.12);
+            --shadow-pink: 0 12px 28px -8px rgba(223, 23, 131, 0.38);
+        }
+
+
+       
+        
+
+        html { 
+        box-sizing: border-box; 
+        overflow-x: hidden; 
+        scroll-behavior: smooth; 
+        }
+        
+        
+        
+        *, *:before, *:after { box-sizing: inherit; margin: 0; padding: 0; }
+        
+        
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            transition: background-color 0.3s, color 0.3s;
+            overflow-x: hidden;
+        }
+
+        .text-display { font-size: clamp(2.4rem, 5.2vw, 4.6rem); line-height: 1.06; }
+        
+        
+        
+        .text-h1 { font-size: clamp(2.1rem, 4.3vw, 3.6rem); line-height: 1.1; }
+        
+        
+        
+        .text-h2 { font-size: clamp(1.75rem, 3.2vw, 2.65rem); line-height: 1.15; font-weight: 900; }
+        
+        
+        
+        .text-h3 { font-size: clamp(1.2rem, 1.8vw, 1.45rem); line-height: 1.3; }
+
+
+
+
+        .top-menu-bar {
+            position: fixed; top: 2rem; left: 50%; transform: translateX(-50%);
+            width: calc(100% - 2rem); max-width: 1200px; z-index: 1100;
+            background-color: var(--card-bg); box-shadow: var(--shadow);
+            border: 1px solid var(--border-color); border-radius: 12px;
+            padding: 0 1rem; transition: all 0.3s ease-in-out;
+        }
+        
+        
+
+        .top-menu-bar.full-width {
+            width: 100%; max-width: 100%; left: 0; transform: translateX(0);
+            border-radius: 0; border-left: none; border-right: none;
+            padding: 0 1.5rem; top: 0; box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+        }
+        
+        
+        
+
+        .top-menu-content {
+            height: 70px; display: flex; align-items: center;
+            justify-content: space-between; gap: 1rem;
+        }
+        
+        
+        
+
+        .logo-container { display: flex; align-items: center; gap: 0.5rem; flex-shrink: 0; }
+        
+        
+        
+        #appLogo { height: 40px; width: 40px; object-fit: cover; border-radius: 8px; }
+        
+        
+        
+        #appBrandNameDisplay { font-size: 1.5rem; font-weight: 900; color: var(--text); white-space: nowrap; }
+        
+        
+        
+        .brand-accent { color: #df1783; }
+
+        .top-menu-actions { display: flex; align-items: center; gap: 0.5rem; flex-shrink: 0; }
+        
+
+        .fab {
+            width: 40px; height: 40px; border-radius: 50%;
+            background-color: var(--bg); color: var(--text);
+            border: 1px solid var(--border-color);
+            display: flex; justify-content: center; align-items: center;
+            cursor: pointer; transition: all 0.2s ease; font-size: 0.95rem;
+        }
+        
+        
+        
+        .fab:hover { background-color: var(--border-color); transform: scale(1.1); }
+        
+        
+
+        .lang-dropdown { position: relative; display: inline-block; font-family: system-ui, -apple-system, sans-serif; }
+        
+        
+        
+        .lang-trigger {
+            display: flex; align-items: center; gap: 8px; padding: 8px 14px;
+            background: #fff; border: 1px solid #d0d5dd; border-radius: 8px;
+            cursor: pointer; font-size: 14px; font-weight: 600; color: #1d2939;
+            transition: border-color 0.15s ease, box-shadow 0.15s ease;
+        }
+        
+        
+        .lang-trigger:hover { border-color: #98a2b3; }
+        
+        
+        
+        .lang-trigger:focus-visible { outline: none; border-color: #667085; box-shadow: 0 0 0 3px rgba(102, 112, 133, 0.15); }
+        
+        
+        .lang-trigger .flag { font-size: 18px; line-height: 1; }
+        
+        
+        .lang-trigger .chevron { margin-left: 4px; width: 14px; height: 14px; color: #667085; transition: transform 0.2s ease; }
+        
+        
+        
+        .lang-dropdown.open .chevron { transform: rotate(180deg); }
+        
+        
+        .lang-menu {
+            position: absolute; top: calc(100% + 6px); left: 0; min-width: 100%;
+            padding: 6px; margin: 0; list-style: none; background: #fff;
+            border: 1px solid #d0d5dd; border-radius: 8px;
+            box-shadow: 0 8px 24px rgba(16, 24, 40, 0.12);
+            opacity: 0; visibility: hidden; transform: translateY(-6px);
+            transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
+            z-index: 100;
+        }
+        
+        
+        
+        .lang-dropdown.open .lang-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+        
+        
+        .lang-option {
+            display: flex; align-items: center; gap: 8px; width: 100%;
+            padding: 8px 12px; background: none; border: none; border-radius: 6px;
+            cursor: pointer; font-size: 14px; font-weight: 600; color: #1d2939;
+            text-align: left; transition: background 0.1s ease; text-decoration: none;
+        }
+        
+        
+        
+        .lang-option:hover { background: #f2f4f7; }
+        
+        
+        .lang-option[aria-selected="true"] { background: #f9fafb; }
+        
+        
+        .lang-option .flag { font-size: 18px; line-height: 1; }
+        
+        
+
+        .primary-btn {
+            background-color: var(--primary); color: white; transition: all 0.3s ease;
+            padding: 12px 22px; display: inline-block; text-decoration: none;
+            border-radius: 12px; font-weight: 600; cursor: pointer;
+            border: none; font-family: inherit;
+        }
+        
+        
+        
+        .primary-btn:hover {
+            background-color: var(--primary-hover); transform: translateY(-3px);
+            box-shadow: 0 10px 20px -10px var(--primary);
+        }
+
+
+
+        .nav-menu { display: flex; align-items: center; gap: 0.25rem; margin: 0 auto; }
+        
+        
+        
+        .nav-item { position: relative; }
+
+        .nav-link {
+            display: flex; align-items: center; gap: 0.35rem;
+            padding: 0.55rem 1rem; font-size: 0.95rem; font-weight: 600;
+            color: var(--text); text-decoration: none; border-radius: 8px;
+            transition: background 0.2s, color 0.2s; white-space: nowrap;
+            cursor: pointer; border: none; background: transparent;
+            font-family: inherit; line-height: 1;
+        }
+        
+        
+        
+        .nav-link:hover { background: var(--bg); color: var(--primary); }
+        
+        
+        
+        .nav-item.open .nav-link { background: var(--bg); color: var(--primary); }
+        
+        
+        .nav-link .chevron { width: 14px; height: 14px; transition: transform 0.25s ease; opacity: 0.6; }
+        
+        
+        
+        .nav-item.open .nav-link .chevron { transform: rotate(180deg); }
+        
+        
+        
+
+        .submenu {
+            position: absolute; top: calc(100% + 10px); left: 50%;
+            transform: translateX(-50%) translateY(-6px); min-width: 250px;
+            background: var(--card-bg); border: 1px solid var(--border-color);
+            border-radius: 12px;
+            box-shadow: 0 15px 35px -10px rgba(0,0,0,0.25), 0 4px 10px -4px rgba(0,0,0,0.1);
+            padding: 0.5rem; opacity: 0; visibility: hidden;
+            transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+            z-index: 1200; display: flex; flex-direction: column; gap: 0.15rem;
+        }
+        
+        
+        
+        .submenu::before {
+            content: ''; position: absolute; top: -6px; left: 50%;
+            transform: translateX(-50%) rotate(45deg); width: 12px; height: 12px;
+            background: var(--card-bg); border-left: 1px solid var(--border-color);
+            border-top: 1px solid var(--border-color); border-radius: 3px 0 0 0;
+        }
+        
+        
+        .nav-item.open .submenu {
+            opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0);
+        }
+        
+        
+        .submenu-link {
+            display: flex; align-items: center; gap: 0.6rem;
+            padding: 0.65rem 0.9rem; font-size: 0.875rem; font-weight: 500;
+            color: var(--text); text-decoration: none; border-radius: 8px;
+            transition: background 0.2s, color 0.2s; white-space: nowrap;
+        }
+        
+        
+        
+        .submenu-link i { width: 12px; text-align: center; color: #df1783; transition: color 0.2s; flex-shrink: 0; }
+        .submenu-link:hover { background: var(--submenu-hover); color: var(--primary); }
+        .submenu-link:hover i { color: var(--primary); }
+        
+        
+
+        .header-banner {
+            width: 100%; padding: 200px 2rem 5rem 2rem; text-align: center;
+            position: relative;
+            background-image: url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover; background-position: center; color: white; overflow: hidden;
+        }
+        
+        
+        
+        .header-banner::before {
+            content: ''; position: absolute; inset: 0;
+            background-color: rgba(45, 55, 72, 0.75); z-index: 1;
+        }
+        
+        
+        .header-content { position: relative; z-index: 2; max-width: 1080px; margin: 0 auto; }
+
+
+
+
+
+        .hero-badge {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            font-family: 'Caveat', cursive; font-size: 1.5rem;
+        }
+        
+        
+        .hero-badge:hover { transform: translateY(-3px); box-shadow: 0 10px 20px -10px var(--primary); }
+        
+        
+        
+
+        @keyframes wave {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(20deg); }
+            75% { transform: rotate(-15deg); }
+        }
+        
+        .waving-hand { display: inline-block; animation: wave 1.5s infinite; transform-origin: 70% 70%; }
+        
+        
+        
+
+        .nav-link {
+            position: relative; color: var(--fg); font-weight: 500;
+            font-size: 0.9375rem; transition: color 0.25s ease;
+        }
+        
+        
+        .nav-link::after {
+            content: ''; position: absolute; bottom: -4px; left: 0;
+            width: 100%; height: 2px; background-color: var(--primary);
+            transform: scaleX(0); transform-origin: left;
+            transition: transform 0.3s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+        
+        
+        .nav-link:hover { color: var(--primary); }
+        
+        
+        .nav-link:hover::after { transform: scaleX(1); }
+        
+        
+        
+
+        @keyframes marqueeScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        
+        
+        .marquee-track { 
+        display: flex; 
+        width: max-content; 
+        animation: marqueeScroll 32s linear infinite; 
+        }
+        
+        
+        .marquee-track:hover { a
+        nimation-play-state: paused; 
+        }
+        
+        
+        
+        
+
+        @media (prefers-reduced-motion: reduce) {
+            *, ::before, ::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+            .marquee-track { animation: none !important; }
+        }
+        
+        
+        
+
+        h1, h2, h3, h4 { color: var(--text); }
+        
+        
+        
+        p { color: var(--text-light); }
+        
+        
+        
+        .hero-title, .hero-subtitle { color: white !important; }
+        
+        
+        
+
+        .section-dummy {
+            padding: 6rem 1rem; 
+            background: var(--card-bg);
+            border-top: 1px solid var(--border-color); 
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        
+        
+        
+        .section-dummy h2 { 
+        color: var(--text); 
+        }
+        
+        
+        
+
+        @keyframes shakeIcon {
+            0%, 100% { transform: translateX(0) rotate(0); }
+            25% { transform: translateX(-4px) rotate(-5deg); }
+            75% { transform: translateX(4px) rotate(5deg); }
+        }
+        
+        
+        
+        .problem-bullet:hover .problem-x { 
+        animation: shakeIcon 0.45s ease; 
+        }
+        
+        
+        
+
+        .feature-card {
+            background-color: var(--card-bg); border: 1px solid var(--border);
+            border-radius: 20px; box-shadow: var(--shadow-sm);
+            transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        
+        
+        
+        .feature-card:hover {
+            transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: var(--primary);
+        }
+        
+        
+        .feature-card .card-icon { transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        
+        
+        .feature-card:hover .card-icon { 
+        transform: scale(1.08) rotate(-0deg); }
+        
+        
+        .feature-card .card-arrow { 
+        transition: transform 0.3s ease; }
+        
+        
+        .feature-card:hover .card-arrow { 
+        transform: translateX(4px); }
+        
+
+        .macbook-wrapper { 
+        position: relative; 
+        background: transparent; 
+        padding: 0px; 
+        border-radius: 0px; }
+        
+        
+        
+        .macbook-wrapper .macbook { 
+        padding: 4% 6%; 
+        margin: 0 auto; 
+        max-width: 2200px; 
+        background: transparent; 
+        border-radius: 0px; 
+        }
+        
+        
+        
+        .macbook-wrapper .screen {
+            background: #000; border-radius: 3% 3% 0.5% 0.5% / 5%; margin: 0 auto;
+            position: relative; width: 80%;
+        }
+        
+        
+        .macbook-wrapper .screen:before {
+            border: 2px solid #cacacc; border-radius: 3% 3% 0.5% 0.5% / 5%;
+            box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.8) inset, 0 0 1px 2px rgba(255, 255, 255, 0.3) inset;
+            content: ""; display: block; padding-top: 67%;
+        }
+        
+        
+        .macbook-wrapper .viewport {
+            position: absolute; bottom: 0; left: 0; right: 0; top: 0;
+            margin: 4.3% 3.2%; background: #F2F1FB; border-radius: 4px;
+        }
+        
+        
+        .macbook-wrapper .base { 
+        position: relative; 
+        width: 100%; 
+        background: transparent; 
+        border-radius: 8px; }
+        
+        
+        
+        .macbook-wrapper .base:before {
+            content: ""; 
+            display: block; 
+            padding-top: 3.3%;
+            background: linear-gradient(#eaeced, #edeef0 55%, #fff 55%, #8a8b8f 56%, #999ba0 61%, #4B4B4F 84%, #262627 89%, rgba(0, 0, 0, .01) 98%);
+            border-radius: 0 0 10% 10%/ 0 0 50% 50%;
+        }
+        
+        
+        
+        .macbook-wrapper .notch {
+            background: #ddd; 
+            border-radius: 0 0 7% 7% / 0 0 95% 95%;
+            box-shadow: -5px -1px 3px rgba(0, 0, 0, 0.2) inset, 5px -1px 3px rgba(0, 0, 0, 0.2) inset;
+            margin-left: auto; 
+            margin-right: auto; 
+            margin-top: -3.5%; 
+            z-index: 2;
+            position: relative; 
+            width: 14%;
+        }
+        
+        
+        
+        .macbook-wrapper .notch:before { 
+        content: ""; 
+        display: block; 
+        padding-top: 10%; }
+        
+        
+        
+        .macbook-wrapper .macbook .viewport {
+            transition: background-position 20s ease; 
+            background-position: 0 0;
+            background-size: 100% auto; 
+            overflow: hidden; 
+            cursor: pointer;
+        }
+        
+        
+        .macbook-wrapper .macbook:hover .viewport { 
+        background-position: 0 100%; 
+        }
+        
+        
+        
+        .macbook-wrapper .macbook .viewport:after {
+            background: radial-gradient(circle at right bottom, transparent 75%, rgba(255, 255, 255, 0.05) 75%, transparent);
+            bottom: 0; 
+            content: ""; 
+            left: 0; 
+            position: absolute; 
+            right: 0; 
+            top: 0;
+        }
+        
+        
+
+        .device-stage { 
+        position: relative; 
+        min-height: 560px; }
+        
+        
+        
+
+        .phone-mockup {
+            position: absolute; top: 50%; right: 0; transform: translate(120%, -50%);
+            width: 240px; z-index: 20; pointer-events: none;
+            transition: transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+            filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.35));
+        }
+        
+        
+        .phone-mockup img { width: 100%; height: auto; display: block; }
+        
+        
+        .phone-mockup.is-visible { transform: translate(0, -50%); right: 5%; }
+        
+        
+        .phone-float { width: 100%; will-change: transform; }
+        
+        
+        .phone-mockup.is-visible .phone-float { 
+        animation: phoneFloat 4s ease-in-out infinite; 
+        }
+        
+        
+
+        @keyframes phoneFloat {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-14px) rotate(0deg); }
+            100% { transform: translateY(0) rotate(0deg); }
+        }
+
+
+
+        .notification-stack {
+            position: absolute; top: 22%; left: 0; width: min(320px, 30vw); height: 200px;
+            z-index: 20; pointer-events: none; transform: translateX(-130%);
+            opacity: 0;
+            transition: transform 1.1s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.6s ease;
+        }
+        
+        
+        .notification-stack.is-visible { 
+        transform: translateX(15%); 
+        opacity: 1; }
+        
+        
+        
+
+        .notif-card {
+            position: absolute; left: 0; width: 100%;
+            display: flex; align-items: center; gap: 10px; padding: 12px 14px;
+            border-radius: 14px; background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(171, 146, 57, 0.35);
+            box-shadow:
+                0 14px 30px -12px rgba(0, 0, 0, 0.28),
+                0 2px 6px -1px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            transform-origin: center top;
+            transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.6s ease, filter 0.5s ease;
+        }
+        
+        
+        
+        .notif-card[data-layer="1"] { z-index: 30; transform: translateY(60px) scale(1); opacity: 1; filter: brightness(1); }
+        
+        
+        .notif-card[data-layer="2"] { z-index: 20; transform: translateY(20px) scale(0.94); opacity: 0.7; filter: brightness(0.97); }
+        
+        
+        .notif-card[data-layer="3"] { z-index: 10; transform: translateY(-18px) scale(0.88); opacity: 0.5; filter: brightness(0.93); }
+        
+        
+        
+
+        .notif-icon {
+            position: relative; flex: 0 0 36px; width: 36px; height: 36px;
+            border-radius: 10px; display: flex; align-items: center; justify-content: center;
+            background: linear-gradient(135deg, #f8b3d4 0%, #f06aa8 25%, #df1783 50%, #a81365 75%, #6e0e45 100%);
+            color: #fff;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55), 0 2px 6px -1px rgba(0, 0, 0, 0.3);
+        }
+        .notif-icon svg { animation: bellSwing 2.4s ease-in-out infinite; transform-origin: 50% 10%; }
+        
+        
+
+        @keyframes bellSwing {
+            0%, 70%, 100% { transform: rotate(0deg); }
+            75% { transform: rotate(14deg); }
+            80% { transform: rotate(-12deg); }
+            85% { transform: rotate(10deg); }
+            90% { transform: rotate(-8deg); }
+            95% { transform: rotate(4deg); }
+        }
+
+        .notif-ping {
+            position: absolute; top: -3px; right: -3px; width: 10px; height: 10px;
+            border-radius: 50%; background: #f5d547;
+            box-shadow: 0 0 0 0 rgba(245, 213, 71, 0.7);
+            animation: pingPulse 1.8s ease-out infinite;
+        }
+        
+        
+        
+        @keyframes pingPulse {
+            0% { box-shadow: 0 0 0 0 rgba(245, 213, 71, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(245, 213, 71, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(245, 213, 71, 0); }
+        }
+        
+        
+
+        .notif-content { flex: 1; min-width: 0; }
+        
+        
+        .notif-title { font-size: 0.85rem; font-weight: 700; color: #111827; line-height: 1.2; }
+        
+        
+        .notif-desc {
+            font-size: 0.75rem; color: #6b7280; line-height: 1.3; margin-top: 2px;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
+        
+        
+        .notif-time { font-size: 0.7rem; color: #df1783; font-weight: 600; flex-shrink: 0; }
+
+        @media (max-width: 1023px) {
+            .phone-mockup, .notification-stack { display: none; }
+        }
+        
+        
+        
+        
+
+        #backToTopBtn {
+            position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px;
+            background-color: var(--primary); color: white; border: none; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; z-index: 1000; opacity: 0; visibility: hidden;
+            transform: translateY(20px);
+            transition: opacity 0.3s, visibility 0.3s, transform 0.3s, background-color 0.3s;
+        }
+        
+        
+        
+        #backToTopBtn.show { 
+        opacity: 1; 
+        visibility: visible; 
+        transform: translateY(0); }
+        
+        
+        #backToTopBtn:hover { 
+        background-color: var(--primary-hover); 
+        transform: translateY(-3px) scale(1.05); 
+        }
+        
+        
+
+        .brand-glow {
+            color: #ffffff;
+            text-shadow: 0 0 20px rgba(0,0,0,0.6), 0 0 40px rgba(0,0,0,0.5), 0 0 60px rgba(0,0,0,0.4);
+            letter-spacing: 0.05em;
+        }
+        
+        
+
+        .site-footer {
+            position: relative; 
+            z-index: 10; 
+            padding: 6rem 1.5rem 3rem 1.5rem;
+            margin-top: auto; 
+            background: var(--secondary);
+            border-bottom-left-radius: 2rem; 
+            border-bottom-right-radius: 2rem;
+            color: var(--text); 
+            transition: background 0.3s, color 0.3s;
+        }
+        
+        
+        
+        .footer-heading {
+            color: #a0aec0 !important; 
+            font-size: 0.75rem; 
+            letter-spacing: 0.1em;
+            text-transform: uppercase; 
+            font-weight: 700; 
+            margin-bottom: 0.5rem;
+        }
+        
+        
+        .footer-link { 
+        color: white !important; 
+        text-decoration: none; 
+        font-size: 0.875rem; 
+        transition: color 0.2s; 
+        }
+        
+        
+        .footer-link:hover { 
+        color: var(--primary) !important; }
+
+
+
+        .footer-support-card {
+            background: var(--card-bg); 
+            border: 1px solid var(--primary);
+            border-radius: 1rem; 
+            padding: 1.5rem; position: relative;
+            overflow: hidden; 
+            box-shadow: var(--shadow);
+            transition: border-color 0.3s, background 0.3s;
+            width: 100%; 
+            max-width: 360px; 
+            aspect-ratio: 3/2;
+        }
+        
+        
+
+        .video-modal {
+            display: none; position: fixed; inset: 0;
+            background-color: rgba(0,0,0,0.88); z-index: 2000;
+            justify-content: center; align-items: center; padding: 1rem;
+        }
+        
+        
+        .video-modal.active { display: flex; }
+
+        .video-modal-content {
+            position: relative; width: 100%; max-width: 900px;
+            background: var(--card-bg); border-radius: 12px; overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+        }
+        
+        
+        .close-modal {
+            position: absolute; top: 15px; right: 15px; width: 40px; height: 40px;
+            background: var(--primary); color: white; border: none; border-radius: 50%;
+            font-size: 20px; cursor: pointer; display: flex; align-items: center;
+            justify-content: center; box-shadow: var(--shadow); z-index: 1010;
+            transition: transform 0.2s ease;
+        }
+        
+        
+        .close-modal:hover { transform: scale(1.1); }
+
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; background: #000; }
+        
+        
+        .video-container iframe { position: absolute; inset: 0; width: 100%; height: 100%; }
+        
+
+        @media (max-width: 1024px) {
+            .nav-menu { display: none; }
+            #appBrandNameDisplay { font-size: 1.25rem; }
+        }
+        
+        
+        @media (max-width: 768px) {
+            #appBrandNameDisplay { font-size: 1.15rem; }
+            #desktopCta { display: none; }
+            .header-banner { padding: 150px 1rem 4rem 1rem; }
+            .top-menu-bar { width: calc(100% - 1rem); }
+            .top-menu-bar.full-width { padding: 0 1rem; }
+        }
+        
+        
+        @media (max-width: 480px) {
+            #appBrandNameDisplay { font-size: 1rem; }
+            .fab { width: 36px; height: 36px; font-size: 0.85rem; }
+            .header-banner { padding: 130px 1rem 3rem 1rem; }
+            h1 { font-size: 1.9rem; }
+        }
+        
+        
+    </style>
+</head>
+<body class="antialiased selection:bg-[#DF1783] selection:text-white">
+
+
+
+    <!-- ================= CURTAIN WRAPPER ================= -->
+    <div class="relative z-10 bg-white mb-[100vh] curtain-shadow rounded-b-[2rem] transition-shadow duration-300" style="background: var(--bg);">
+    
+    
+<!-- ================= CURSOR FOLLOWER ================= -->
+
+    <div id="cursor-follower" aria-hidden="true" class="fixed top-0 left-0 w-6 h-6 rounded-full pointer-events-none z-[999]  bg-[#DF1783]/60 hidden lg:block opacity-0 transition-opacity duration-300"></div>
+    
+    
+    
+
+        <!-- ================= TOP MENU BAR ================= -->
+        <div class="top-menu-bar" id="topMenuBar">
+            <div class="top-menu-content">
+                <div class="logo-container">
+                    <img id="appLogo" src="https://ik.imagekit.io/bebell/Easy%20Listings/Branding/EasyListings.webp" alt="Easy Listings Logo">
+                    <span id="appBrandNameDisplay">Easy<span class="brand-accent">Listings</span></span>
+                </div>
+
+                <nav class="nav-menu" aria-label="Main navigation">
+                    <div class="nav-item">
+                        <a href="#acerca" class="nav-link" data-i18n="nav_about">Acerca de</a>
+                    </div>
+
+                    <div class="nav-item" id="funcionesNavItem">
+                        <button class="nav-link" id="funcionesToggle" aria-haspopup="true" aria-expanded="false">
+                            <span data-i18n="nav_features">Funciones</span>
+                            <i data-lucide="chevron-down" class="chevron"></i>
+                        </button>
+                        <div class="submenu" role="menu" aria-label="Funciones submenu">
+                            <a href="#funciones" class="submenu-link" role="menuitem">
+                                <i data-lucide="layout-grid"></i> <span data-i18n="sub_catalog">Catálogo de Propiedades</span>
+                            </a>
+                            <a href="#funciones" class="submenu-link" role="menuitem">
+                                <i data-lucide="users"></i> <span data-i18n="sub_leads">Captura de Leads</span>
+                            </a>
+                            <a href="#funciones" class="submenu-link" role="menuitem">
+                                <i data-lucide="smartphone"></i> <span data-i18n="sub_mobile">Optimizado para Móviles</span>
+                            </a>
+                            <a href="#funciones" class="submenu-link" role="menuitem">
+                                <i data-lucide="palette"></i> <span data-i18n="sub_brand">Personalización de Marca</span>
+                            </a>
+                            <a href="#funciones" class="submenu-link" role="menuitem">
+                                <i data-lucide="bar-chart-3"></i> <span data-i18n="sub_analytics">Analíticas</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="nav-item">
+                        <a href="#pricing" class="nav-link" data-i18n="nav_pricing">Planes</a>
+                    </div>
+
+                    <div class="nav-item">
+                        <a href="/contacto" class="nav-link" data-i18n="nav_contact">Contacto</a>
+                    </div>
+                </nav>
+                
+                
+                
+                
+                
+                
+
+                <div class="top-menu-actions">
+                    <div class="lang-dropdown" id="langDropdown">
+                        <button type="button" class="lang-trigger" id="langTrigger" aria-haspopup="listbox" aria-expanded="false">
+                            <span class="flag" id="currentFlag">🇩🇴</span>
+                            <span id="currentCode">ES</span>
+                            <i data-lucide="chevron-down" class="chevron"></i>
+                        </button>
+
+                        <ul class="lang-menu" id="langMenu" role="listbox" aria-label="Seleccionar idioma">
+                            <li role="option" aria-selected="true">
+                                <a href="#" class="lang-option" data-flag="🇩🇴" data-code="ES" data-lang="es">
+                                    <span class="flag">🇩🇴</span> ES
+                                </a>
+                            </li>
+                            <li role="option" aria-selected="false">
+                                <a href="?lang=en" class="lang-option" data-flag="🇺🇸" data-code="EN" data-lang="en">
+                                    <span class="flag">🇺🇸</span> EN
+                                </a>
+                            </li>
+                            <li role="option" aria-selected="false">
+                                <a href="?lang=fr" class="lang-option" data-flag="🇫🇷" data-code="FR" data-lang="fr">
+                                    <span class="flag">🇫🇷</span> FR
+                                </a>
+                            </li>
+                            <li role="option" aria-selected="false">
+                                <a href="?lang=it" class="lang-option" data-flag="🇮🇹" data-code="IT" data-lang="it">
+                                    <span class="flag">🇮🇹</span> IT
+                                </a>
+                            </li>
+                            <li role="option" aria-selected="false">
+                                <a href="?lang=de" class="lang-option" data-flag="🇩🇪" data-code="DE" data-lang="de">
+                                    <span class="flag">🇩🇪</span> DE
+                                </a>
+                            </li>
+                            <li role="option" aria-selected="false">
+                                <a href="?lang=ru" class="lang-option" data-flag="🇷🇺" data-code="RU" data-lang="ru">
+                                    <span class="flag">🇷🇺</span> RU
+                                </a>
+                            </li>
+                            
+                            <li role="option" aria-selected="false">
+                                <a href="?lang=zh" class="lang-option" data-flag="🇨🇳" data-code="ZH" data-lang="zh">
+                                    <span class="flag">🇨🇳</span> ZH
+                                </a>
+                            </li>
+                            
+                            <li role="option" aria-selected="false">
+                                <a href="?lang=ja" class="lang-option" data-flag="🇯🇵" data-code="JA" data-lang="ja">
+                                    <span class="flag">🇯🇵</span> JA
+                                </a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                    
+
+<!-- ==== Theme button
+                    <div class="fab" id="darkModeToggle" title="Cambiar Tema"><i class="fas fa-moon"></i></div>
+
+==== -->
+
+                    <a href="https://app/easylistings.website" class="primary-btn hidden sm:inline-block" id="desktopCta" data-i18n="nav_cta">Iniciar Sesión</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        <!-- ================= HERO ================= -->
+        <header class="header-banner pb-40" id="mainHeader">
+            <div class="header-content">
+                <div class="hero-badge inline-block bg-[var(--primary)] text-white font-semibold px-4 py-2 rounded-full mb-6">
+                    <span data-i18n="hero_greeting">¡Bienvenido!</span> <span class="waving-hand">👋</span>
+                </div>
+                <h1 class="hero-title max-w-[980px] mx-auto text-4xl md:text-6xl font-extrabold leading-tight mb-4" data-i18n="hero_title">Tu negocio inmobiliario, organizado en un solo lugar.</h1>
+                <p class="hero-subtitle max-w-3xl mx-auto text-lg md:text-xl mb-8" data-i18n="hero_subtitle">EasyListings reúne tus propiedades, clientes y oportunidades de venta en una plataforma diseñada para gestionar y hacer crecer tu negocio inmobiliario.</p>
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <a href="#pricing" class="primary-btn text-lg w-full sm:w-auto" data-i18n="hero_cta">Crea tu Listing</a>
+                    <button id="openVideoModal" class="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white text-lg font-semibold px-8 py-3 rounded-xl transition w-full sm:w-auto" data-i18n="hero_video">Ver Video Demostrativo</button>
+                </div>
+
+                <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs sm:text-sm text-white font-medium mt-8 text-center">
+                    <span class="inline-flex items-center gap-1.5">
+                        <i class="fa-solid fa-circle-check text-[#df1783]"></i>
+                        <span data-i18n="heroMicrocopy">Sin tarjeta de crédito · Hecho para el mercado dominicano</span>
+                    </span>
+
+                    <a href="https://wa.me/18095550199?text=Hola%20EasyListings%2C%20quiero%20probar%20el%20cat%C3%A1logo%20inmobiliario"
+                       target="_blank" rel="noopener"
+                       onclick="trackCustomEvent('wa_hero_click')"
+                       class="inline-flex items-center gap-1.5 text-[#25D366] dark:text-[#3FB39A] font-semibold hover:underline">
+                        <i class="fa-brands fa-whatsapp text-base text-[#25D366]"></i>
+                        <span data-i18n="heroWaLink">Consultar por WhatsApp</span>
+                    </a>
+                </div>
+
+                <div class="flex flex-wrap items-center justify-center gap-2 mt-6">
+                    <span class="inline-flex items-center gap-2 rounded-full bg-pink-50 px-3 py-1.5 text-xs font-semibold text-gray-700">
+                        <i class="fa-solid fa-house text-[#DF1783]"></i>
+                        Gestión de propiedades
+                    </span>
+                    <span class="inline-flex items-center gap-2 rounded-full bg-pink-50 px-3 py-1.5 text-xs font-semibold text-gray-700">
+                        <i class="fa-solid fa-users text-[#DF1783]"></i>
+                        CRM inmobiliario
+                    </span>
+                    <span class="inline-flex items-center gap-2 rounded-full bg-pink-50 px-3 py-1.5 text-xs font-semibold text-gray-700">
+                        <i class="fa-solid fa-chart-line text-[#DF1783]"></i>
+                        Analítica inmobiliaria
+                    </span>
+                </div>
+            </div>
+
+            <div class="absolute bottom-0 left-0 right-0 h-[4px] bg-gradient-to-r from-transparent via-[#df1783] to-transparent z-30"></div>
+        </header>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        <!-- ================= SOCIAL PROOF ================= -->
+        <section class="py-10 border-b border-[var(--border)] bg-gradient-to-b from-[var(--bg-alt)] to-[var(--bg)]">
+            <div class="max-w-7xl text-center mx-auto px-4 sm:px-6 lg:px-8">
+                <p class="text-center text-sm sm:text-base font-medium text-[var(--muted)] mb-6 mt-3" data-i18n="socialProofHeadline">
+                    Con la confianza de agentes y agencias en Santo Domingo, Punta Cana, Santiago y Las Terrenas
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto mb-8 text-center">
+                    <div class="p-4 rounded-2xl bg-[var(--card-bg)] border border-[var(--border)] shadow-sm">
+                        <div class="font-display text-3xl sm:text-4xl font-bold text-[#DF1783]">
+                            +<span class="stat-counter" data-target="4850">4,850</span>
+                        </div>
+                        <p class="text-xs sm:text-sm font-medium text-[var(--muted)] mt-1" data-i18n="stat1Label">propiedades publicadas</p>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-[var(--card-bg)] border border-[var(--border)] shadow-sm">
+                        <div class="font-display text-3xl sm:text-4xl font-bold text-[#0F6E5C] dark:text-[#3FB39A]">
+                            +<span class="stat-counter" data-target="320">320</span>
+                        </div>
+                        <p class="text-xs sm:text-sm font-medium text-[var(--muted)] mt-1" data-i18n="stat2Label">agentes activos</p>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-[var(--card-bg)] border border-[var(--border)] shadow-sm">
+                        <div class="font-display text-3xl sm:text-4xl font-bold text-[var(--fg)]">
+                            <span class="stat-counter" data-target="85">85</span>%
+                        </div>
+                        <p class="text-xs sm:text-sm font-medium text-[var(--muted)] mt-1" data-i18n="stat3Label">menos tiempo publicando</p>
+                    </div>
+                </div>
+
+                <div class="overflow-hidden relative py-2" aria-label="Dominican Republic Real Estate Locations">
+                    <div class="marquee-track flex items-center gap-8 text-xs sm:text-sm font-mono-spec uppercase tracking-wider text-[var(--muted)]">
+                        <span class="inline-flex items-center gap-2"><i class="fa-solid fa-location-dot text-[#DF1783]"></i> Piantini · Santo Domingo</span>
+                        <span>•</span>
+                        <span class="inline-flex items-center gap-2"><i class="fa-solid fa-umbrella-beach text-[#0F6E5C]"></i> Cap Cana · Punta Cana</span>
+                        <span>•</span>
+                        <span class="inline-flex items-center gap-2"><i class="fa-solid fa-city text-[#DF1783]"></i> Cerros de Gurabo · Santiago</span>
+                        <span>•</span>
+                        <span class="inline-flex items-center gap-2"><i class="fa-solid fa-water text-[#0F6E5C]"></i> Las Terrenas · Samaná</span>
+                        <span>•</span>
+                        <span class="inline-flex items-center gap-2"><i class="fa-solid fa-sun text-[#E8B44C]"></i> Casa de Campo · La Romana</span>
+                        <span>•</span>
+                        <span class="inline-flex items-center gap-2"><i class="fa-solid fa-water-ladder text-[#DF1783]"></i> Sosúa & Cabarete · Puerto Plata</span>
+                        <span>•</span>
+                        <span class="inline-flex items-center gap-2"><i class="fa-solid fa-location-dot text-[#DF1783]"></i> Piantini · Santo Domingo</span>
+                        <span>•</span>
+                        <span class="inline-flex items-center gap-2"><i class="fa-solid fa-umbrella-beach text-[#0F6E5C]"></i> Cap Cana · Punta Cana</span>
+                        <span>•</span>
+                        <span class="inline-flex items-center gap-2"><i class="fa-solid fa-city text-[#DF1783]"></i> Cerros de Gurabo · Santiago</span>
+                        <span>•</span>
+                        <span class="inline-flex items-center gap-2"><i class="fa-solid fa-water text-[#0F6E5C]"></i> Las Terrenas · Samaná</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        <!-- ================= PROBLEM ================= -->
+        <section class="py-20 md:py-28 border-b bg-[var(--bg-alt)]">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-14 gsap-reveal">
+                    <span class="font-mono-spec text-xs uppercase tracking-widest px-3 py-1 rounded-full bg-rose-500/10 text-rose-600 dark:text-rose-400 font-semibold" data-i18n="problemEyebrow">
+                        El costo de trabajar manualmente
+                    </span>
+                    <h3 class="text-3xl md:text-4xl font-bold my-3 section-headline" data-i18n="problemH2">
+                        ¿Todavía copias y pegas propiedades en cada red social?
+                    </h3>
+                    <p class="text-base sm:text-lg text-[var(--muted)]" data-i18n="problemBody">
+                        Publicar una propiedad en WhatsApp, Facebook, Instagram y tu página web debería tomar segundos, no una tarde. Y cuando llega un cliente, ¿dónde quedó la conversación? EasyListings une tu catálogo, tus canales y tu seguimiento en un solo lugar.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                
+                
+                    <div class="problem-bullet feature-card p-6 border border-[var(--border)] bg-white shadow-sm rounded-2xl gsap-reveal">
+                    
+                        <div class="problem-x w-11 h-11 rounded-full bg-rose-500/15 text-[#C33A2B] flex items-center justify-center font-bold text-lg mb-4">✕</div>
+                        <h3 class="font-bold text-base mb-2" data-i18n="probBullet1">Publicación manual en cada canal</h3>
+                        <p class="text-sm text-[var(--muted)]" data-i18n="probDesc1">Subir 20 fotos una por una en Instagram, Facebook y estados de WhatsApp consume horas valiosas.</p>
+                    </div>
+
+                    <div class="problem-bullet feature-card p-6 border border-[var(--border)] bg-white shadow-sm rounded-2xl gsap-reveal">
+                        <div class="problem-x w-11 h-11 rounded-full bg-rose-500/15 text-[#C33A2B] flex items-center justify-center font-bold text-lg mb-4">✕</div>
+                        <h3 class="font-bold text-base mb-2" data-i18n="probBullet2">Clientes perdidos en el chat de WhatsApp</h3>
+                        <p class="text-sm text-[var(--muted)]" data-i18n="probDesc2">Consultas enterradas entre cientos de mensajes sin recordatorios ni pipeline de seguimiento.</p>
+                    </div>
+
+                    <div class="problem-bullet feature-card p-6 border border-[var(--border)] bg-white shadow-sm rounded-2xl gsap-reveal">
+                        <div class="problem-x w-11 h-11 rounded-full bg-rose-500/15 text-[#C33A2B] flex items-center justify-center font-bold text-lg mb-4">✕</div>
+                        <h3 class="font-bold text-base mb-2" data-i18n="probBullet3">Sin datos de qué propiedad genera interés</h3>
+                        <p class="text-sm text-[var(--muted)]" data-i18n="probDesc3">Compartes enlaces sin saber cuántos compradores vieron la propiedad o hicieron clic en contactar.</p>
+                    </div>
+
+                    <div class="problem-bullet feature-card p-6 border border-[var(--border)] bg-white shadow-sm rounded-2xl gsap-reveal">
+                        <div class="problem-x w-11 h-11 rounded-full bg-rose-500/15 text-[#C33A2B] flex items-center justify-center font-bold text-lg mb-4">✕</div>
+                        <h3 class="font-bold text-base mb-2" data-i18n="probBullet4">Catálogos desactualizados</h3>
+                        <p class="text-sm text-[var(--muted)]" data-i18n="probDesc4">Cambiar un precio en DOP o USD implica editar decenas de publicaciones antiguas manualmente.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        <!-- ================= CORE FEATURES ================= -->
+        <section id="features" class="py-20 md:py-28 bg- border-y border-[var(--border)]">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16 gsap-reveal">
+                    <span class="font-mono-spec text-xs uppercase tracking-widest px-3 py-1 rounded-full bg-rose-500/10 text-rose-600 dark:text-rose-400 font-semibold" data-i18n="featuresEyebrow">
+                        Sistema para inmobiliarias
+                    </span>
+                    <h2 class="text-3xl md:text-4xl font-bold my-3 section-headline" data-i18n="featuresH2">
+                        Todo lo que tu inmobiliaria necesita, en un solo panel de control
+                    </h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+                    <article class="feature-card p-7 flex flex-col justify-between gsap-reveal">
+                        <div>
+                            <div class="card-icon w-12 h-12 rounded-2xl overflow-hidden bg-[#DF1783]/15 mb-5">
+                                <img src="https://ik.imagekit.io/bebell/Easy%20Listings/Branding/catalog.webp" alt="Catálogo en un clic" class="w-full h-full object-cover" loading="lazy">
+                            </div>
+                            <h3 class="text-h3 font-bold mb-2.5" data-i18n="feat1Title">Catálogo en un clic</h3>
+                            <p class="text-[var(--muted)] text-sm sm:text-base mb-6" data-i18n="feat1Desc">
+                                Sube o importa tus propiedades y publícalas donde quieras, sin reescribir nada.
+                            </p>
+                        </div>
+                        <a href="#live-demo" class="inline-flex items-center gap-2 text-sm font-semibold text-[#DF1783] dark:text-[#df1783] hover:underline">
+                            <span data-i18n="featLinkText">Explorar función</span>
+                            <i class="fa-solid fa-arrow-right card-arrow text-xs"></i>
+                        </a>
+                    </article>
+
+                    <article class="feature-card p-7 flex flex-col justify-between gsap-reveal">
+                        <div>
+                            <div class="card-icon w-12 h-12 rounded-2xl overflow-hidden bg-amber-500/15 mb-5">
+                                <img src="https://ik.imagekit.io/bebell/Easy%20Listings/Branding/stats-donut.webp" alt="Analítica por propiedad" class="w-full h-full object-cover" loading="lazy">
+                            </div>
+                            <h3 class="text-h3 font-bold mb-2.5" data-i18n="feat4Title">Analítica por propiedad</h3>
+                            <p class="text-[var(--muted)] text-sm sm:text-base mb-6" data-i18n="feat4Desc">
+                                Ve vistas, clics en WhatsApp, compartidos y leads por cada listing.
+                            </p>
+                        </div>
+                        <a href="#live-demo" class="inline-flex items-center gap-2 text-sm font-semibold text-[#DF1783] dark:text-[#df1783] hover:underline">
+                            <span data-i18n="featLinkText">Explorar función</span>
+                            <i class="fa-solid fa-arrow-right card-arrow text-xs"></i>
+                        </a>
+                    </article>
+
+                    <article class="feature-card p-7 flex flex-col justify-between gsap-reveal">
+                        <div>
+                            <div class="card-icon w-12 h-12 rounded-2xl overflow-hidden bg-purple-500/15 mb-5">
+                                <img src="https://ik.imagekit.io/bebell/Easy%20Listings/Branding/contacts.webp" alt="Gestión de Contactos" class="w-full h-full object-cover" loading="lazy">
+                            </div>
+                            <h3 class="text-h3 font-bold mb-2.5" data-i18n="feat3Title">Gestión de clientes</h3>
+                            <p class="text-[var(--muted)] text-sm sm:text-base mb-6" data-i18n="feat3Desc">
+                                Organiza datos e historial de cada contacto en un solo lugar.
+                            </p>
+                        </div>
+                        <a href="#integrations" class="inline-flex items-center gap-2 text-sm font-semibold text-[#DF1783] dark:text-[#df1783] hover:underline">
+                            <span data-i18n="featLinkText">Explorar función</span>
+                            <i class="fa-solid fa-arrow-right card-arrow text-xs"></i>
+                        </a>
+                    </article>
+
+                    <article class="feature-card p-7 flex flex-col justify-between gsap-reveal">
+                        <div>
+                            <div class="card-icon w-12 h-12 rounded-2xl overflow-hidden bg-[#25D366]/15 mb-5">
+                                <img src="https://ik.imagekit.io/bebell/Easy%20Listings/Branding/crm.webp" alt="Pipeline integrado" class="w-full h-full object-cover" loading="lazy">
+                            </div>
+                            <h3 class="text-h3 font-bold mb-2.5" data-i18n="feat2Title">Pipeline integrado</h3>
+                            <p class="text-[var(--muted)] text-sm sm:text-base mb-6" data-i18n="feat2Desc">
+                                Captura clientes desde tu formulario de captación y da seguimiento con un pipeline visual.
+                            </p>
+                        </div>
+                        <a href="#whatsapp-section" class="inline-flex items-center gap-2 text-sm font-semibold text-[#df1783] dark:text-[#df1783] hover:underline">
+                            <span data-i18n="featLinkText">Explorar función</span>
+                            <i class="fa-solid fa-arrow-right card-arrow text-xs"></i>
+                        </a>
+                    </article>
+
+                    <article class="feature-card p-7 flex flex-col justify-between gsap-reveal">
+                        <div>
+                            <div class="card-icon w-12 h-12 rounded-2xl overflow-hidden bg-amber-500/15 mb-5">
+                                <img src="https://ik.imagekit.io/bebell/Easy%20Listings/Branding/inbox.webp" alt="Bandeja de mensajes" class="w-full h-full object-cover" loading="lazy">
+                            </div>
+                            <h3 class="text-h3 font-bold mb-2.5" data-i18n="feat7Title">Bandeja de mensajes</h3>
+                            <p class="text-[var(--muted)] text-sm sm:text-base mb-6" data-i18n="feat7Desc">
+                                Todas tus conversaciones de múltiples canales en un solo lugar.
+                            </p>
+                        </div>
+                        <a href="#live-demo" class="inline-flex items-center gap-2 text-sm font-semibold text-[#DF1783] dark:text-[#df1783] hover:underline">
+                            <span data-i18n="featLinkText">Explorar función</span>
+                            <i class="fa-solid fa-arrow-right card-arrow text-xs"></i>
+                        </a>
+                    </article>
+
+                    <article class="feature-card p-7 flex flex-col justify-between gsap-reveal">
+                        <div>
+                            <div class="card-icon w-12 h-12 rounded-2xl overflow-hidden bg-emerald-500/15 mb-5">
+                                <img src="https://ik.imagekit.io/bebell/Easy%20Listings/Branding/translations.webp" alt="Interfaz Multilingüe" class="w-full h-full object-cover" loading="lazy">
+                            </div>
+                            <h3 class="text-h3 font-bold mb-2.5" data-i18n="feat5Title">Interfaz Multilingüe</h3>
+                            <p class="text-[var(--muted)] text-sm sm:text-base mb-6" data-i18n="feat5Desc">
+                                Catálogo en español e inglés, con precios en DOP y USD.
+                            </p>
+                        </div>
+                        <a href="#pricing" class="inline-flex items-center gap-2 text-sm font-semibold text-[#df1783] dark:text-[#df1783] hover:underline">
+                            <span data-i18n="featLinkText">Explorar función</span>
+                            <i class="fa-solid fa-arrow-right card-arrow text-xs"></i>
+                        </a>
+                    </article>
+
+                    <article class="feature-card p-7 flex flex-col justify-between gsap-reveal">
+                        <div>
+                            <div class="card-icon w-12 h-12 rounded-2xl overflow-hidden bg-sky-500/15 mb-5">
+                                <img src="https://ik.imagekit.io/bebell/Easy%20Listings/Branding/domain.webp" alt="Dominio propio + SEO" class="w-full h-full object-cover" loading="lazy">
+                            </div>
+                            <h3 class="text-h3 font-bold mb-2.5" data-i18n="feat6Title">Dominio propio + SEO</h3>
+                            <p class="text-[var(--muted)] text-sm sm:text-base mb-6" data-i18n="feat6Desc">
+                                Usa tu dominio, genera sitemaps y datos estructurados para posicionar en Google.
+                            </p>
+                        </div>
+                        <a href="#pricing" class="inline-flex items-center gap-2 text-sm font-semibold text-[#DF1783] dark:text-[#df1783] hover:underline">
+                            <span data-i18n="featLinkText">Explorar función</span>
+                            <i class="fa-solid fa-arrow-right card-arrow text-xs"></i>
+                        </a>
+                    </article>
+
+                    <article class="feature-card p-7 flex flex-col justify-between gsap-reveal">
+                        <div>
+                            <div class="card-icon w-12 h-12 rounded-2xl overflow-hidden bg-emerald-500/15 mb-5">
+                                <img src="https://ik.imagekit.io/bebell/Easy%20Listings/Branding/AI.webp" alt="Asistencia IA" class="w-full h-full object-cover" loading="lazy">
+                            </div>
+                            <h3 class="text-h3 font-bold mb-2.5" data-i18n="feat8Title">Asistencia IA</h3>
+                            <p class="text-[var(--muted)] text-sm sm:text-base mb-6" data-i18n="feat8Desc">
+                                Redacta respuestas, resume conversaciones y responde al instante.
+                            </p>
+                        </div>
+                        <a href="#pricing" class="inline-flex items-center gap-2 text-sm font-semibold text-[#df1783] dark:text-[#df1783] hover:underline">
+                            <span data-i18n="featLinkText">Explorar función</span>
+                            <i class="fa-solid fa-arrow-right card-arrow text-xs"></i>
+                        </a>
+                    </article>
+
+                    <article class="feature-card p-7 flex flex-col justify-between gsap-reveal relative">
+                        <span class="absolute top-4 right-4 z-10 inline-flex items-center rounded-full bg-[#df1783] px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-white">PRONTO</span>
+                        <div>
+                            <div class="card-icon w-12 h-12 rounded-2xl overflow-hidden bg-purple-500/15 mb-5">
+                                <img src="https://ik.imagekit.io/bebell/Easy%20Listings/Branding/share.webp" alt="Automatizaciones" class="w-full h-full object-cover" loading="lazy">
+                            </div>
+                            <h3 class="text-h3 font-bold mb-2.5" data-i18n="feat9Title">Automatizaciones</h3>
+                            <p class="text-[var(--muted)] text-sm sm:text-base mb-6" data-i18n="feat9Desc">
+                                Publica en Facebook, Instagram, TikTok, Pinterest y Google desde el mismo lugar.
+                            </p>
+                        </div>
+                        <a href="#integrations" class="inline-flex items-center gap-2 text-sm font-semibold text-[#DF1783] dark:text-[#df1783] hover:underline">
+                            <span data-i18n="featLinkText">Explorar función</span>
+                            <i class="fa-solid fa-arrow-right card-arrow text-xs"></i>
+                        </a>
+                    </article>
+                </div>
+            </div>
+        </section>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        <!-- ================= HOW IT WORKS ================= -->
+        <section class="py-20 md:py-28 border-b bg-[var(--bg-alt)]">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-16 gsap-reveal">
+                    <span class="font-mono-spec text-xs uppercase tracking-widest px-3 py-1 rounded-full bg-rose-500/10 text-rose-600 dark:text-rose-400 font-semibold" data-i18n="stepsEyebrow">
+                        Rápido y sin código
+                    </span>
+                    <h2 class="text-3xl md:text-4xl font-bold my-3 section-headline" data-i18n="stepsH2">
+                        Publica tu catálogo en 3 pasos
+                    </h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+                    <div class="feature-card p-8 relative gsap-reveal">
+                        <div class="flex items-center justify-between mb-6">
+                            <span class="font-mono-spec text-4xl font-bold text-[#DF1783]">01</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3" data-i18n="step1Title">Crea una cuenta</h3>
+                        <p class="text-sm sm:text-base text-[var(--muted)]" data-i18n="step1Body">
+                            Importa desde Excel, Google Sheets, CSV o crea propiedades desde cero.
+                        </p>
+                    </div>
+
+                    <div class="feature-card p-8 relative gsap-reveal">
+                        <div class="flex items-center justify-between mb-6">
+                            <span class="font-mono-spec text-4xl font-bold text-[#df1783] dark:text-[#3FB39A]">02</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3" data-i18n="step2Title">Sube tus propiedades</h3>
+                        <p class="text-sm sm:text-base text-[var(--muted)]" data-i18n="step2Body">
+                            Importa desde Excel, Google Sheets, CSV o crea propiedades desde cero.
+                        </p>
+                    </div>
+
+                    <div class="feature-card p-8 relative gsap-reveal">
+                        <div class="flex items-center justify-between mb-6">
+                            <span class="font-mono-spec text-4xl font-bold text-[#df1783]">03</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3" data-i18n="step3Title">Publica y da seguimiento</h3>
+                        <p class="text-sm sm:text-base text-[var(--muted)]" data-i18n="step3Body">
+                            Selecciona un plan y publica en un clic. Gestiona cada cliente desde el CRM.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        <!-- ================= LIVE DEMO ================= -->
+        <section id="live-demo" class="py-20 md:py-28 bg-white border-y border-[var(--border)]">
+            <div class="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-2 gsap-reveal">
+                    <span class="font-mono-spec text-xs uppercase tracking-widest px-3 py-1 rounded-full bg-rose-500/10 text-rose-600 dark:text-rose-400 font-semibold" data-i18n="liveDemoEyebrow">
+                        CATÁLOGO DE PROPIEDADES
+                    </span>
+                    <h2 class="lg:mb-4 md:mb-4 sm:mb-4 text-3xl md:text-4xl font-bold my-3 section-headline hover gsap-reveal" i18n="demoTitle">Mira <span class="hover-[#df1783]">EasyListings</span> en Vivo</h2>
+                    <p class="my-4" i18n="demoText">Así ven tus clientes tus propiedades: bilingüe, con precios en DOP y USD, botón de WhatsApp en cada listing y búsqueda optimizada para móvil. Prueba <strong class="hover-[#df1783]">EasyListings</strong></p>
+                </div>
+
+                <div class="device-stage relative max-w-7xl mx-auto mt-0 px-6">
+                    <div class="macbook-wrapper gsap-scale-up relative z-10">
+                        <div class="macbook">
+                            <div class="screen">
+                                <div class="viewport" style="background-image: url('https://cdn.shopify.com/s/files/1/0242/0175/6777/files/Macbook-Air-bebell-digital-solutions.github.io_3_copy.png?v=1755987678');"></div>
+                            </div>
+                            <div class="base"></div>
+                            <div class="notch"></div>
+                        </div>
+                        <p class="text-center text-xs font-mono-spec text-[var(--muted)] mt-3" data-i18n="demoMacbookHint">
+                            ↑ Pasa el cursor sobre el MacBook para deslizar la vista previa o haz clic para probar el catálogo real
+                        </p>
+                    </div>
+
+                    <div class="phone-mockup" id="phoneMockup" aria-hidden="true">
+                        <div class="phone-float">
+                            <img src="https://ik.imagekit.io/bebell/Easy%20Listings/screenshots/iPhone-15-easylistings.webp" alt="App móvil EasyListings" class="phone-screen" />
+                        </div>
+                    </div>
+
+                    <div class="notification-stack" id="notificationStack" aria-hidden="true">
+                        <div class="notif-card" data-notif>
+                            <div class="notif-icon">
+                                <i data-lucide="bell-ring" class="w-5 h-5"></i>
+                                <span class="notif-ping"></span>
+                            </div>
+                            <div class="notif-content">
+                                <div class="notif-title">Nuevo Lead #1042</div>
+                                <div class="notif-desc">Manuel S. está interesado en propiedad AH-203</div>
+                            </div>
+                            <div class="notif-time">ahora</div>
+                        </div>
+
+                        <div class="notif-card" data-notif>
+                            <div class="notif-icon">
+                                <i data-lucide="bell-ring" class="w-5 h-5"></i>
+                                <span class="notif-ping"></span>
+                            </div>
+                            <div class="notif-content">
+                                <div class="notif-title">Nuevo Mensaje</div>
+                                <div class="notif-desc">Quiero visitar la propiedad GB-178</div>
+                            </div>
+                            <div class="notif-time">hace 1m</div>
+                        </div>
+
+                        <div class="notif-card" data-notif>
+                            <div class="notif-icon">
+                                <i data-lucide="bell-ring" class="w-5 h-5"></i>
+                                <span class="notif-ping"></span>
+                            </div>
+                            <div class="notif-content">
+                                <div class="notif-title">Nuevo Lead #1041</div>
+                                <div class="notif-desc">Cristina M. esta interesado en propiedad NC-597</div>
+                            </div>
+                            <div class="notif-time">hace 3m</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- ================= INTEGRATIONS ================= -->
+             <!-- ==========================================================================
+             SECTION 7: INTEGRATIONS STRIP (10 Tools + Hover Cards)
+             ========================================================================== -->
+        <section id="integrations" class="py-16 md:py-24 bg- border-y border-[var(--border)]">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            
+            <span class="font-mono-spec text-xs uppercase tracking-widest px-3 py-1 rounded-full bg-rose-500/10 text-rose-600 dark:text-rose-400 font-semibold" data-i18n="integrationsEyebrow">
+             
+    INTEGRACIONES ESTRATÉGICAS
+                    </span>
+                    
+                <h2 class="mb-12 text-3xl md:text-4xl font-bold my-3 section-headline gsap-reveal" data-i18n="integrationsH2">
+               
+                    Conecta EasyListings con las herramientas que ya usas
+                </h2>
+
+
+
+                <!-- Grid of 10 Required Integrations + Legacy Google Sheets -->
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 mb-10">
+                
+                
+                
+                    <div class="integration-card feature-card p-4 flex flex-col items-center justify-center gap-2">
+                    
+          <span class="absolute top-2 right-2 bg-[#DF1783] text-white text-[9px] font-bold uppercase tracking-wide px-2 py-1 rounded-full">
+        PRO
+    </span>           
+                        <i class="fa-brands fa-whatsapp text-3xl text-[#25D366]"></i>
+                        <span class="text-xs font-semibold">WhatsApp Business</span>
+                    </div>
+                    
+          
+          
+                
+                    
+                    <div class="integration-card feature-card p-4 flex flex-col items-center justify-center gap-2">
+                    
+     <span class="absolute top-2 right-2 bg-[#DF1783] text-white text-[9px] font-bold uppercase tracking-wide px-2 py-1 rounded-full">
+        PLANEADO
+    </span>                
+        <i class="fa-brands fa-facebook text-3xl text-[#1877F2]"></i>
+                        <span class="text-xs font-semibold">Facebook</span>
+                    </div>
+                    
+                    
+                    
+                    
+                    <div class="integration-card feature-card p-4 flex flex-col items-center justify-center gap-2">
+                    
+ <span class="absolute top-2 right-2 bg-[#DF1783] text-white text-[9px] font-bold uppercase tracking-wide px-2 py-1 rounded-full">
+        PLANEADO
+    </span>
+
+                        <i class="fa-brands fa-instagram text-3xl text-[#E4405F]"></i>
+                        <span class="text-xs font-semibold">Instagram</span>
+                    </div>
+                    
+                    
+                    
+                    
+                    <div class="integration-card feature-card p-4 flex flex-col items-center justify-center gap-2">
+                    
+      <span class="absolute top-2 right-2 bg-[#DF1783] text-white text-[9px] font-bold uppercase tracking-wide px-2 py-1 rounded-full">
+        PLANEADO
+    </span>               
+                        <i class="fa-brands fa-tiktok text-3xl text-[var(--fg)]"></i>
+                        <span class="text-xs font-semibold">TikTok</span>
+                    </div>
+                    
+                    
+                    
+                    
+                    
+                    <div class="integration-card feature-card p-4 flex flex-col items-center justify-center gap-2">
+                    
+        <span class="absolute top-2 right-2 bg-[#DF1783] text-white text-[9px] font-bold uppercase tracking-wide px-2 py-1 rounded-full">
+        PRONTO
+    </span>                       
+                        <i class="fa-brands fa-pinterest text-3xl text-[#BD081C]"></i>
+                        <span class="text-xs font-semibold">Pinterest</span>
+                    </div>
+                    
+                    
+                    
+                    
+                    <div class="integration-card feature-card p-4 flex flex-col items-center justify-center gap-2">
+                    
+        <span class="absolute top-2 right-2 bg-[#DF1783] text-white text-[9px] font-bold uppercase tracking-wide px-2 py-1 rounded-full">
+        PLANEADO
+    </span>                  
+                        <i class="fa-brands fa-linkedin text-3xl text-[#0A66C2]"></i>
+                        <span class="text-xs font-semibold">LinkedIn</span>
+                    </div>
+                    
+                    
+                    
+                    
+                    
+                    <div class="integration-card feature-card p-4 flex flex-col items-center justify-center gap-2">
+                    
+<span class="absolute top-2 right-2 bg-[#DF1783] text-white text-[9px] font-bold uppercase tracking-wide px-2 py-1 rounded-full">
+        PLANEADO
+    </span>                    
+                        <i class="fa-solid fa-chart-simple text-3xl text-[#F9AB00]"></i>
+                        <span class="text-xs font-semibold">Google Analytics 4</span>
+                    </div>
+                    
+                    
+                    
+                    
+                    
+                    <div class="integration-card feature-card p-4 flex flex-col items-center justify-center gap-2">
+                    
+  <span class="absolute top-2 right-2 bg-[#DF1783] text-white text-[9px] font-bold uppercase tracking-wide px-2 py-1 rounded-full">
+        PRO
+    </span>                  
+                       
+                        <i class="fa-brands fa-meta text-3xl text-[#0081FB]"></i>
+                        <span class="text-xs font-semibold">Meta Pixel</span>
+                    </div>
+                    
+                    
+                    
+                    
+                    
+                    <div class="integration-card feature-card p-4 flex flex-col items-center justify-center gap-2">
+                    
+       <span class="absolute top-2 right-2 bg-[#DF1783] text-white text-[9px] font-bold uppercase tracking-wide px-2 py-1 rounded-full">
+        PLANEADO
+    </span>              
+                    
+                        <i class="fa-solid fa-tags text-3xl text-[#4285F4]"></i>
+                        <span class="text-xs font-semibold">Google Tag Manager</span>
+                    </div>
+                    
+                    
+                    
+                    
+                    <div class="integration-card feature-card p-4 flex flex-col items-center justify-center gap-2">
+
+ <span class="absolute top-2 right-2 bg-[#DF1783] text-white text-[9px] font-bold uppercase tracking-wide px-2 py-1 rounded-full">
+        PRO
+    </span>
+                    <img
+        src="https://ik.imagekit.io/bebell/ICONS/logos/google-calendar-icon.svg"
+        alt=""
+        class="w-8 h-8"
+        width="32"
+        height="32"
+        loading="lazy"
+        aria-hidden="true"
+    />
+                        <span class="text-xs font-semibold" data-i18n="intCustomDomain">Google Calendar</span>
+                    </div>
+                </div>
+
+
+
+
+
+                <button type="button" onclick="openInfoModal('integrations')" class="inline-flex items-center gap-2 font-semibold text-sm sm:text-base text-[#DF1783] hover:underline">
+                    <span data-i18n="integrationsCta">Ver todas las integraciones →</span>
+                </button>
+            </div>
+        </section>      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        <!-- ================= USE CASES ================= -->
+        <section class="relative py-24 overflow-hidden bg-white font-sans">
+            <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 text-center">
+                <span class="font-mono-spec text-xs uppercase tracking-widest px-3 py-1 rounded-full bg-rose-500/10 text-rose-600 dark:text-rose-400 font-semibold" data-i18n="useCasesEyebrow">
+                    Diseñado para agentes inmobiliarios
+                </span>
+
+                <h2 class="mb-6 text-3xl md:text-4xl font-bold my-3 section-headline gsap-reveal">
+                    Hecho para cada tipo de negocio inmobiliario<br/>
+                </h2>
+
+                <p class="max-w-2xl mx-auto text-lg text-gray-600">
+                    Cada negocio inmobiliario tiene necesidades diferentes. Easy Listings te ofrece las herramientas para publicar, administrar y presentar tus propiedades de forma profesional.
+                </p>
+
+                <div class="relative flex justify-center w-full max-w-5xl mx-auto mt-20 h-[350px] sm:h-[450px] group cursor-pointer perspective-1000">
+                    <div class="absolute top-8 z-0 w-full max-w-xs sm:max-w-md h-48 sm:h-64 bg-white border border-gray-200 rounded-xl shadow-lg transition-all duration-700 ease-out origin-bottom-right -translate-x-16 sm:-translate-x-28 -rotate-6 group-hover:-translate-x-32 sm:group-hover:-translate-x-64 group-hover:-rotate-12 overflow-hidden">
+                        <img src="https://ik.imagekit.io/bebell/Easy%20Listings/Banners-&-Backgrounds/constructora.webp" alt="Constructoras" class="w-full h-full object-cover opacity-85 group-hover:opacity-100 transition-opacity duration-700" />
+                    </div>
+
+                    <div class="absolute top-8 z-0 w-full max-w-xs sm:max-w-md h-48 sm:h-64 bg-white border border-gray-200 rounded-xl shadow-lg transition-all duration-700 ease-out origin-bottom-left translate-x-16 sm:translate-x-28 rotate-6 group-hover:translate-x-32 sm:group-hover:translate-x-64 group-hover:rotate-12 overflow-hidden">
+                        <img src="https://ik.imagekit.io/bebell/Easy%20Listings/Banners-&-Backgrounds/agencias.webp" alt="Agencias" class="w-full h-full object-cover opacity-85 group-hover:opacity-100 transition-opacity duration-700" />
+                    </div>
+
+                    <div class="absolute top-0 z-10 w-full max-w-sm sm:max-w-lg h-64 sm:h-80 bg-white border border-gray-100 rounded-xl shadow-2xl transition-transform duration-700 ease-out group-hover:scale-105 overflow-hidden">
+                        <img src="https://ik.imagekit.io/bebell/Easy%20Listings/Banners-&-Backgrounds/brokers.webp" alt="Brokers" class="w-full h-full object-cover object-top" />
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 gap-12 mt-4 text-left sm:grid-cols-3 max-w-5xl mx-auto">
+                    <div>
+                        <h4 class="mb-3 text-xs font-bold tracking-widest text-[#df1783] uppercase">Agentes y Brokers</h4>
+                        <h3 class="mb-3 text-lg font-bold text-gray-900">Agentes independientes</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed">
+                            Publica tus propiedades, gestiona tus clientes y recibe consultas desde tu propio portal inmobiliario personalizado.
+                        </p>
+                        <button type="button" onclick="openInfoModal('agents')" class="inline-flex items-center mt-4 gap-2 text-sm font-semibold text-[#DF1783] hover:underline">
+                            <span data-i18n="uc1Link">Ver solución para agentes →</span>
+                        </button>
+                    </div>
+
+                    <div>
+                        <h4 class="mb-3 text-xs font-bold tracking-widest text-[#df1783] uppercase">Agencias</h4>
+                        <h3 class="mb-3 text-lg font-bold text-gray-900">Empresas Inmobiliarias</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed">
+                            Administra tu equipo, organiza tu catálogo de propiedades y centraliza las consultas de tus clientes desde un solo panel.
+                        </p>
+                        <button type="button" onclick="openInfoModal('agencies')" class="inline-flex items-center mt-4 gap-2 text-sm font-semibold text-[#df1783] dark:text-[#df1783] hover:underline">
+                            <span data-i18n="uc2Link">Ver solución para agencias →</span>
+                        </button>
+                    </div>
+
+                    <div>
+                        <h4 class="mb-3 text-xs font-bold tracking-widest text-[#df1783] uppercase">Constructoras</h4>
+                        <h3 class="mb-3 text-lg font-bold text-gray-900">Desarrolladoras inmobiliarias</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed">
+                            Presenta tus proyectos, promociona unidades disponibles y recibe consultas desde un portal diseñado para tu empresa.
+                        </p>
+                        <button type="button" onclick="openInfoModal('brokers')" class="inline-flex items-center mt-4 gap-2 text-sm font-semibold text-[#DF1783] hover:underline">
+                            <span data-i18n="uc3Link">Ver solución para constructoras →</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        <!-- World Map -->
+        <section class="w-full">
+            <img src="https://ik.imagekit.io/bebell/Easy%20Listings/Banners-&-Backgrounds/world-map.webp" alt="Presencia global EasyListings" class="w-full h-auto object-cover bg-white pb-12" loading="lazy" />
+        </section>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        <!-- ================= BLOG / NEWS ================= -->
+        <section class="px-8 py-16 border-b bg-[var(--bg-alt)]">
+            <div class="max-w-[1280px] mx-auto w-full flex flex-col md:flex-row items-start">
+                <div class="w-full md:w-[38%] pr-8 md:pr-16 shrink-0 mb-12 md:mb-0 md:sticky md:top-24">
+                    <span class="font-mono-spec text-xs uppercase tracking-widest px-3 py-1 rounded-full bg-rose-500/10 text-rose-600 dark:text-rose-400 font-semibold" data-i18n="blogEyebrow">
+                        Nuestras Noticias
+                    </span>
+                    <h2 class="mt-4 text-3xl md:text-[36px] font-bold text-[#061c38] leading-[1.15] mb-8 tracking-tight">
+                        Explora nuestras novedades así como también artículos y consejos relacionados.
+                    </h2>
+                    <a href="#" class="inline-flex items-center text-gray-400 hover:text-[#df1783] transition-colors text-[16px]">
+                        Sala de prensa
+                        <svg class="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </a>
+                </div>
+
+                <div id="scroll-container" class="w-full md:w-[62%] flex overflow-x-auto no-scrollbar snap-x snap-mandatory">
+                    <div class="flex pt-2 pb-8">
+                        <article class="w-[280px] shrink-0 snap-start pr-8 border-r border-gray-200 mr-8 flex flex-col">
+                            <a href="https://example.com/article1" target="_blank" rel="noopener noreferrer" class="relative block mb-6 overflow-hidden group rounded-[10px]">
+                                <img src="https://ik.imagekit.io/bebell/Easy%20Listings/Banners-&-Backgrounds/real-estate-agent.webp?updatedAt=1794198456240?q=80&w=600&auto=format&fit=crop" alt="Building" class="w-full h-[150px] object-cover transition-transform duration-300 group-hover:scale-105">
+                                <span class="absolute top-3 right-3 z-10 inline-flex items-center bg-[#df1783] text-white text-[10px] font-semibold uppercase tracking-wide leading-none px-2.5 py-1.5 rounded-full whitespace-nowrap">NUEVO</span>
+                            </a>
+                            <h4 class="text-[15px] font-bold text-[#061c38] mb-4 leading-snug">
+                                Fiduciaria Universal transforma activos inmobiliarios premium en una nueva oportunidad de inversión para el mercado dominicano
+                            </h4>
+                            <p class="text-gray-500 text-[12px] leading-relaxed">
+                                A través del Fideicomiso de Oferta Pública de Valores Inmobiliarios de Renta Fija Acrópolis 02-FU, inversionistas pueden acceder a una estructura respaldada por uno de los complejos corporativos y comerciales más relevantes de Santo Domingo.
+                            </p>
+                            <div class="mt-auto pt-5">
+                                <a href="https://example.com/article1" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-[var(--text-light)] font-semibold hover:text-[#df1783] transition-colors text-[16px]">
+                                    Leer más
+                                    <svg class="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                                </a>
+                            </div>
+                        </article>
+
+                        <article class="w-[280px] shrink-0 snap-start pr-8 border-r border-gray-200 mr-8 flex flex-col">
+                            <a href="https://example.com/article2" target="_blank" rel="noopener noreferrer" class="relative block mb-6 overflow-hidden group rounded-[10px]">
+                                <img src="https://ik.imagekit.io/bebell/Easy%20Listings/Banners-&-Backgrounds/founders.webp?updatedAt=1794198456208?q=80&w=600&auto=format&fit=crop" alt="Finance Report" class="w-full h-[150px] object-cover transition-transform duration-300 group-hover:scale-105">
+                                <span class="absolute top-3 right-3 z-10 inline-flex items-center bg-[#df1783] text-white text-[10px] font-semibold uppercase tracking-wide leading-none px-2.5 py-1.5 rounded-full whitespace-nowrap">15 ENE 2024</span>
+                            </a>
+                            <h4 class="text-[15px] font-bold text-[#061c38] mb-4 leading-snug">
+                                Feller Rate Eleva A AAst la Calificación de Fiduciaria Universal
+                            </h4>
+                            <p class="text-gray-500 text-[12px] leading-relaxed">
+                                Fiduciaria Universal, S.A. (SVSF-004), filial del Grupo Universal, ha recibido una mejora en su calificación al pasar de 'A+' a 'AA-st'.
+                            </p>
+                            <div class="mt-auto pt-5">
+                                <a href="https://example.com/article2" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-[var(--text-light)] font-semibold hover:text-[#df1783] transition-colors text-[16px]">
+                                    Leer más
+                                    <svg class="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                                </a>
+                            </div>
+                        </article>
+
+                        <article class="w-[280px] shrink-0 snap-start pr-8 border-r border-gray-200 mr-8 flex flex-col">
+                            <a href="https://example.com/article3" target="_blank" rel="noopener noreferrer" class="relative block mb-6 overflow-hidden group rounded-[10px]">
+                                <img src="https://ik.imagekit.io/bebell/Easy%20Listings/Banners-&-Backgrounds/12.webp?updatedAt=1793293431610?q=80&w=600&auto=format&fit=crop" alt="Business Meeting" class="w-full h-[150px] object-cover transition-transform duration-300 group-hover:scale-105">
+                                <span class="absolute top-3 right-3 z-10 inline-flex items-center bg-[#df1783] text-white text-[10px] font-semibold uppercase tracking-wide leading-none px-2.5 py-1.5 rounded-full whitespace-nowrap">08 FEB 2024</span>
+                            </a>
+                            <h4 class="text-[15px] font-bold text-[#061c38] mb-4 leading-snug">
+                                Fiduciaria Universal recibe premio "Mayor Emisor De Fideicomiso De Oferta Pública" del año
+                            </h4>
+                            <p class="text-gray-500 text-[12px] leading-relaxed">
+                                Es el primer fideicomiso de desarrollo inmobiliario privado que emite valores de oferta pública de renta variable en el mercado de valores.
+                            </p>
+                            <div class="mt-auto pt-5">
+                                <a href="https://example.com/article3" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-[var(--text-light)] font-semibold hover:text-[#df1783] transition-colors text-[16px]">
+                                    Leer más
+                                    <svg class="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                                </a>
+                            </div>
+                        </article>
+
+                        <article class="w-[280px] shrink-0 snap-start pr-8 flex flex-col">
+                            <a href="https://example.com/article4" target="_blank" rel="noopener noreferrer" class="relative block mb-6 overflow-hidden group rounded-[10px]">
+                                <img src="https://ik.imagekit.io/bebell/Easy%20Listings/Banners-&-Backgrounds/kyc-form.webp?updatedAt=1794198456120?q=80&w=600&auto=format&fit=crop" alt="Stock Chart" class="w-full h-[150px] object-cover transition-transform duration-300 group-hover:scale-105">
+                                <span class="absolute top-3 right-3 z-10 inline-flex items-center bg-[#df1783] text-white text-[10px] font-semibold uppercase tracking-wide leading-none px-2.5 py-1.5 rounded-full whitespace-nowrap">22 MAR 2024</span>
+                            </a>
+                            <h4 class="text-[15px] font-bold text-[#061c38] mb-4 leading-snug">
+                                Ascienden a "AA-sf" la calificación de Fiduciaria Universal
+                            </h4>
+                            <p class="text-gray-500 text-[12px] leading-relaxed">
+                                Mejora la calificación de Fiduciaria Universal por sus buenos resultados, manuales completos y un equipo de profesionales con conocimiento del mercado financiero.
+                            </p>
+                            <div class="mt-auto pt-5">
+                                <a href="https://example.com/article4" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-[var(--text-light)] font-semibold hover:text-[#df1783] transition-colors text-[16px]">
+                                    Leer más
+                                    <svg class="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                                </a>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- ================= FAQ ================= -->
+        <section id="faq" class="py-20 md:py-28">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-14 gsap-reveal">
+                    <span class="font-mono-spec text-xs uppercase tracking-widest px-3 py-1 rounded-full bg-rose-500/10 text-rose-600 dark:text-rose-400 font-semibold" data-i18n="faqEyebrow">
+                        FAQ · Schema.org
+                    </span>
+                    <h2 class="font-display text-h2 font-medium mt-4" data-i18n="faqH2">
+                        Preguntas frecuentes
+                    </h2>
+                </div>
+
+                <div class="space-y-3.5" id="faq-accordion-list">
+                    <div class="feature-card overflow-hidden">
+                        <button type="button" onclick="toggleFaq(0)" aria-expanded="true" aria-controls="faq-ans-0" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-bold text-base sm:text-lg">
+                            <span data-i18n="faq1Q">1. ¿Qué es EasyListings?</span>
+                            <i id="faq-icon-0" class="fa-solid fa-chevron-down text-sm text-[#DF1783] transition-transform duration-300 rotate-180"></i>
+                        </button>
+                        <div id="faq-ans-0" class="px-6 pb-5 text-sm sm:text-base text-[var(--muted)]">
+                            <p data-i18n="faq1A">Software inmobiliario y CRM para agentes y agencias en República Dominicana que centraliza catálogo, publicación en redes y seguimiento de clientes.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-card overflow-hidden">
+                        <button type="button" onclick="toggleFaq(1)" aria-expanded="false" aria-controls="faq-ans-1" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-bold text-base sm:text-lg">
+                            <span data-i18n="faq2Q">2. ¿Puedo publicar en WhatsApp, Facebook e Instagram desde EasyListings?</span>
+                            <i id="faq-icon-1" class="fa-solid fa-chevron-down text-sm text-[#DF1783] transition-transform duration-300"></i>
+                        </button>
+                        <div id="faq-ans-1" class="hidden px-6 pb-5 text-sm sm:text-base text-[var(--muted)]">
+                            <p data-i18n="faq2A">Sí. Conectas tus cuentas y publicas en un clic.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-card overflow-hidden">
+                        <button type="button" onclick="toggleFaq(2)" aria-expanded="false" aria-controls="faq-ans-2" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-bold text-base sm:text-lg">
+                            <span data-i18n="faq3Q">3. ¿El catálogo puede ser bilingüe?</span>
+                            <i id="faq-icon-2" class="fa-solid fa-chevron-down text-sm text-[#DF1783] transition-transform duration-300"></i>
+                        </button>
+                        <div id="faq-ans-2" class="hidden px-6 pb-5 text-sm sm:text-base text-[var(--muted)]">
+                            <p data-i18n="faq3A">Sí, en español e inglés, con precios en DOP y USD.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-card overflow-hidden">
+                        <button type="button" onclick="toggleFaq(3)" aria-expanded="false" aria-controls="faq-ans-3" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-bold text-base sm:text-lg">
+                            <span data-i18n="faq4Q">4. ¿Puedo usar mi propio dominio?</span>
+                            <i id="faq-icon-3" class="fa-solid fa-chevron-down text-sm text-[#DF1783] transition-transform duration-300"></i>
+                        </button>
+                        <div id="faq-ans-3" class="hidden px-6 pb-5 text-sm sm:text-base text-[var(--muted)]">
+                            <p data-i18n="faq4A">Sí. Conecta tu dominio y genera sitemaps y datos estructurados para SEO.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-card overflow-hidden">
+                        <button type="button" onclick="toggleFaq(4)" aria-expanded="false" aria-controls="faq-ans-4" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-bold text-base sm:text-lg">
+                            <span data-i18n="faq5Q">5. ¿Necesito tarjeta de crédito para empezar?</span>
+                            <i id="faq-icon-4" class="fa-solid fa-chevron-down text-sm text-[#DF1783] transition-transform duration-300"></i>
+                        </button>
+                        <div id="faq-ans-4" class="hidden px-6 pb-5 text-sm sm:text-base text-[var(--muted)]">
+                            <p data-i18n="faq5A">No. La prueba es gratuita.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-card overflow-hidden">
+                        <button type="button" onclick="toggleFaq(5)" aria-expanded="false" aria-controls="faq-ans-5" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-bold text-base sm:text-lg">
+                            <span data-i18n="faq6Q">6. ¿Funciona con WhatsApp Business Cloud API?</span>
+                            <i id="faq-icon-5" class="fa-solid fa-chevron-down text-sm text-[#DF1783] transition-transform duration-300"></i>
+                        </button>
+                        <div id="faq-ans-5" class="hidden px-6 pb-5 text-sm sm:text-base text-[var(--muted)]">
+                            <p data-i18n="faq6A">Sí, cumpliendo con las políticas de opt-in y ventana de 24 horas.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-card overflow-hidden">
+                        <button type="button" onclick="toggleFaq(6)" aria-expanded="false" aria-controls="faq-ans-6" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-bold text-base sm:text-lg">
+                            <span data-i18n="faq7Q">7. ¿Puedo importar mi catálogo actual?</span>
+                            <i id="faq-icon-6" class="fa-solid fa-chevron-down text-sm text-[#DF1783] transition-transform duration-300"></i>
+                        </button>
+                        <div id="faq-ans-6" class="hidden px-6 pb-5 text-sm sm:text-base text-[var(--muted)]">
+                            <p data-i18n="faq7A">Sí, desde Excel o CSV.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-card overflow-hidden">
+                        <button type="button" onclick="toggleFaq(7)" aria-expanded="false" aria-controls="faq-ans-7" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-bold text-base sm:text-lg">
+                            <span data-i18n="faq8Q">8. ¿EasyListings es para agentes individuales o agencias?</span>
+                            <i id="faq-icon-7" class="fa-solid fa-chevron-down text-sm text-[#DF1783] transition-transform duration-300"></i>
+                        </button>
+                        <div id="faq-ans-7" class="hidden px-6 pb-5 text-sm sm:text-base text-[var(--muted)]">
+                            <p data-i18n="faq8A">Ambos. Hay planes para agentes independientes, agencias y brokers.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        <!-- ================= FOOTER ================= -->
+        <footer class="site-footer">
+            <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-start">
+                <div class="flex flex-col gap-2 md:col-span-3">
+                    <div class="flex items-center gap-2 text-white font-bold tracking-tight text-lg">
+                        <img src="https://ik.imagekit.io/bebell/Easy%20Listings/Branding/EasyListings.webp" alt="EasyListings Logo" class="w-8 h-8 object-contain rounded-lg">
+                        EasyListings
+                    </div>
+                    <div class="text-gray-300 text-sm mt-2" data-i18n="footer_tagline">
+                        Exhibe Tus Propiedades. Define Tu Marca.
+                    </div>
+
+                    <div class="pt-2 flex flex-col items-start">
+                        <img src="https://ik.imagekit.io/bebell/Badge/google-partner-badge.svg" class="self-start block h-12 w-auto opacity-100 hover:opacity-70 transition filter hover:grayscale-0" alt="Google Partner Badge">
+                        <p class="text-[10px] text-slate-500 mt-4 mb-2 uppercase tracking-widest font-bold" data-i18n="foot-payment-title">Pagos Procesados Seguros</p>
+                        <img src="https://bucket.mlcdn.com/a/3336/3336910/images/ba7caa40fbb46e4528aaae8b0128896c5e8ff915.png" class="self-start block h-5 w-auto opacity-100 hover:opacity-70 transition filter hover:grayscale-0" alt="Secure PayPal Payments">
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap gap-12 text-sm md:col-span-5 md:justify-center">
+                    <div class="flex flex-col gap-3">
+                        <div class="footer-heading" data-i18n="footer_col_about">Producto</div>
+                        <a href="#" class="footer-link" data-i18n="nav_home">Inicio</a>
+                        <a href="/sobre-nosotros" class="footer-link" data-i18n="footer_about_us">Sobre nosotros</a>
+                        <a href="/planes" class="footer-link" data-i18n="nav_pricing">Planes</a>
+                        <a href="/p/terminos" class="footer-link" data-i18n="footer_terms">Terminos de Uso</a>
+                        <a href="/p/privacidad" class="footer-link" data-i18n="footer_privacy">Privacidad</a>
+                        <a href="/contacto" class="footer-link" data-i18n="footer_contact">Contacto</a>
+                    </div>
+
+                    <div class="flex flex-col gap-3">
+                        <div class="footer-heading" data-i18n="footer_col_community">Comunidad</div>
+                        <a href="https://ayuda.easylistings.website" class="footer-link" data-i18n="footer_help">Centro de Ayuda</a>
+                        <a href="https://afiliados.easylistings.website" class="footer-link" data-i18n="footer_affiliates">Afiliados</a>
+                        <a href="/blog" class="footer-link" data-i18n="footer_blog">Blog</a>
+                    </div>
+
+                    <div class="flex flex-col gap-3">
+                        <div class="footer-heading" data-i18n="footer_col_features">Funciones</div>
+                        <a href="/funciones/resumen" class="footer-link">Analítica</a>
+                        <a href="/funciones/catalogo" class="footer-link">Catálogo</a>
+                        <a href="/funciones/pipeline" class="footer-link">Pipeline</a>
+                        <a href="/funciones/contactos" class="footer-link">Contactos</a>
+                        <a href="/funciones/idiomas" class="footer-link">Multilingüe</a>
+                        <a href="/funciones/seo" class="footer-link">Dominio + SEO</a>
+                        <a href="/funciones/bandeja" class="footer-link">Bandeja</a>
+                        <a href="/funciones/asistencia-ia" class="footer-link">Asistencia IA</a>
+                        <a href="/funciones/automatizaciones" class="footer-link">Automatizaciones</a>
+                        <a href="#" class="footer-link">Creación de Contenido</a>
+                        <a href="/funciones/widget-incrustado" class="footer-link">Widget incrustado</a>
+                    </div>
+                </div>
+
+                <div class="md:col-span-4 mt-6 md:mt-0 w-full flex justify-center md:justify-end">
+                    <div class="w-full max-w-full sm:max-w-[360px] aspect-[3/2] rounded-2xl p-5 sm:p-6 md:p-4 lg:p-6 relative overflow-hidden flex flex-col justify-center shadow-lg border border-[var(--primary)] transition-colors group" style="background: var(--bg-alt);">
+                        <div class="relative z-10 w-[65%] sm:w-3/4 lg:w-2/3">
+                            <div class="flex items-center gap-2 mb-2">
+                                <h4 class="font-bold text-lg sm:text-xl md:text-base lg:text-xl" style="color: var(--text);" data-i18n="support_title">Soporte Online</h4>
+                                <span class="text-[10px] md:text-[9px] lg:text-[10px] font-bold px-2 py-0.5 rounded-md uppercase tracking-wider" style="background: rgba(223,23,131,0.12); color: var(--primary); border: 1px solid rgba(223,23,131,0.3);">24/7</span>
+                            </div>
+                            <p class="text-xs sm:text-sm md:text-[10px] lg:text-sm mb-4 md:mb-2 lg:mb-4 leading-snug" style="color: var(--text);" data-i18n="support_text">Contáctenos si tiene alguna pregunta. Nuestro equipo de soporte está aquí para atenderte.</p>
+                            <button onclick="window.open('/soporte', '_blank')" class="bg-[#df1783] hover:bg-[#c0146f] text-white text-xs sm:text-sm md:text-[11px] lg:text-sm font-semibold py-2 px-3 md:py-1.5 md:px-2.5 lg:py-2 lg:px-3 rounded-lg flex items-center gap-2 transition-colors border border-[#df1783] shadow-sm w-fit">
+                                <i data-lucide="headset" class="w-4 h-4 md:w-3.5 md:h-3.5 lg:w-4 lg:h-4 text-white"></i>
+                                <span data-i18n="support_cta">Escríbanos</span>
+                            </button>
+                        </div>
+                        <img src="https://ik.imagekit.io/bebell/Easy%20Listings/Branding/pink-support-agent.webp" alt="24/7 Support" class="absolute bottom-0 right-0 h-full w-auto pt-[1.5rem] object-contain z-0 pointer-events-none opacity-90 group-hover:opacity-100 transition-opacity" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto mt-20 pt-8 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs" style="border-top: 1px solid var(--text-light); color: var(--text-light);">
+                <div class="flex items-center gap-2">
+                    <span data-i18n="footer_credit">Desarrollado en 🇩🇴 por Bebell Digital Solutions.</span>
+                </div>
+                <div data-i18n="footer_copyright">Copyright © 2026 EasyListings • Todos los derechos reservados.</div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ================= FIXED REVEAL SECTION ================= -->
+    <div class="fixed bottom-0 left-0 w-full h-screen z-0 flex items-center justify-center px-4 overflow-hidden selection:bg-white selection:text-black"
+         style="background-image: url('https://ik.imagekit.io/bebell/Easy%20Listings/Banners-&-Backgrounds/background-banner.webp'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+
+        <div class="absolute inset-0" style="background: rgba(0,0,0,0.25);"></div>
+
+        <div class="relative z-10 w-full max-w-2xl mx-auto flex flex-col items-center justify-center text-center p-8 md:p-12 rounded-3xl border border-white/20 shadow-2xl backdrop-blur-xl"
+             style="background: rgba(255,255,255,0.10);">
+            <img src="https://ik.imagekit.io/bebell/Easy%20Listings/Branding/EasyListings.webp?updatedAt=1793038323330" alt="EasyListings Brand" class="w-40 md:w-52 max-h-[18vh] object-contain drop-shadow-1xl mb-6" />
+            <h2 class="text-5xl md:text-8xl font-black leading-[0.9] tracking-tighter text-white mb-4 brand-glow select-none">EasyListings</h2>
+            <p class="text-lg md:text-2xl font-black leading-tight tracking-wide text-white mb-8 brand-glow select-none" data-i18n="reveal_tagline">
+                Exhibe Tus Propiedades. Define Tu Marca.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full">
+                <a href="/planes" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-[#df1783] text-white font-bold text-base md:text-lg tracking-wide shadow-lg hover:bg-gray-100 hover:scale-105 hover:text-[#df1783] transition-transform duration-300">
+                    Registra tu Cuenta
+                </a>
+                <a href="/contacto" class="w-full sm:w-auto px-8 py-4 rounded-xl border-2 border-white text-white font-bold text-base md:text-lg tracking-wide hover:bg-white hover:text-[#df1783] hover:scale-105 transition-transform duration-300">
+                    Solicita una Demo
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <button id="backToTopBtn" aria-label="Back to top">
+        <span class="material-symbols-outlined">arrow_upward</span>
+    </button>
+
+    <!-- ================= VIDEO MODAL ================= -->
+    <div id="youtubeVideoModal" class="video-modal">
+        <div class="video-modal-content">
+            <button id="closeYoutubeModal" class="close-modal" aria-label="Close video">✕</button>
+            <div class="video-container">
+                <iframe id="youtubePlayer" src="" allow="autoplay; encrypted-media" allowfullscreen title="Demo video"></iframe>
+            </div>
+            <div class="p-4 flex justify-center" style="background: var(--card-bg);">
+                <a href="#pricing" id="modalPricingButton" class="primary-btn" data-i18n="hero_cta">Crea tu Listing</a>
+            </div>
+        </div>
+    </div>
+
+    <script>if (typeof lucide !== 'undefined') lucide.createIcons();</script>
+
+    <!-- ================= APPLICATION LOGIC ================= -->
+    <script>
+    /* ==========================================================================
+       1. BILINGUAL COPY DICTIONARY (ES-DO & EN) — aligned with actual HTML
+       ========================================================================== */
+    const I18N = {
+        es: {
+            metaTitle: "EasyListings | Software Inmobiliario y CRM en República Dominicana",
+
+            /* Nav */
+            nav_about: "Acerca de",
+            nav_features: "Funciones",
+            nav_home: "Inicio",
+            nav_pricing: "Planes",
+            nav_contact: "Contacto",
+            nav_cta: "Iniciar Sesión",
+
+            /* Sub-menu */
+            sub_catalog: "Catálogo de Propiedades",
+            sub_leads: "Captura de Leads",
+            sub_mobile: "Optimizado para Móviles",
+            sub_brand: "Personalización de Marca",
+            sub_analytics: "Analíticas",
+
+            /* Hero */
+            hero_greeting: "¡Bienvenido!",
+            hero_title: "Tu negocio inmobiliario, organizado en un solo lugar.",
+            hero_subtitle: "EasyListings reúne tus propiedades, clientes y oportunidades de venta en una plataforma diseñada para gestionar y hacer crecer tu negocio inmobiliario.",
+            hero_cta: "Crea tu Listing",
+            hero_video: "Ver Video Demostrativo",
+            heroMicrocopy: "Sin tarjeta de crédito · Hecho para el mercado dominicano",
+            heroWaLink: "Consultar por WhatsApp",
+
+            /* Social proof */
+            socialProofHeadline: "Con la confianza de agentes y agencias en Santo Domingo, Punta Cana, Santiago y Las Terrenas",
+            stat1Label: "propiedades publicadas",
+            stat2Label: "agentes activos",
+            stat3Label: "menos tiempo publicando",
+
+            /* Problem */
+            problemEyebrow: "El costo de trabajar manualmente",
+            problemH2: "¿Todavía copias y pegas propiedades en cada red social?",
+            problemBody: "Publicar una propiedad en WhatsApp, Facebook, Instagram y tu página web debería tomar segundos, no una tarde. Y cuando llega un cliente, ¿dónde quedó la conversación? EasyListings une tu catálogo, tus canales y tu seguimiento en un solo lugar.",
+            probBullet1: "Publicación manual en cada canal",
+            probDesc1: "Subir 20 fotos una por una en Instagram, Facebook y estados de WhatsApp consume horas valiosas.",
+            probBullet2: "Clientes perdidos en el chat de WhatsApp",
+            probDesc2: "Consultas enterradas entre cientos de mensajes sin recordatorios ni pipeline de seguimiento.",
+            probBullet3: "Sin datos de qué propiedad genera interés",
+            probDesc3: "Compartes enlaces sin saber cuántos compradores vieron la propiedad o hicieron clic en contactar.",
+            probBullet4: "Catálogos desactualizados",
+            probDesc4: "Cambiar un precio en DOP o USD implica editar decenas de publicaciones antiguas manualmente.",
+
+            /* Features */
+            featuresEyebrow: "Sistema para inmobiliarias",
+            featuresH2: "Todo lo que tu inmobiliaria necesita, en un solo panel de control",
+            feat1Title: "Catálogo en un clic",
+            feat1Desc: "Sube o importa tus propiedades y publícalas donde quieras, sin reescribir nada.",
+            feat2Title: "Pipeline integrado",
+            feat2Desc: "Captura clientes desde tu formulario de captación y da seguimiento con un pipeline visual.",
+            feat3Title: "Gestión de clientes",
+            feat3Desc: "Organiza datos e historial de cada contacto en un solo lugar.",
+            feat4Title: "Analítica por propiedad",
+            feat4Desc: "Ve vistas, clics en WhatsApp, compartidos y leads por cada listing.",
+            feat5Title: "Interfaz Multilingüe",
+            feat5Desc: "Catálogo en español e inglés, con precios en DOP y USD.",
+            feat6Title: "Dominio propio + SEO",
+            feat6Desc: "Usa tu dominio, genera sitemaps y datos estructurados para posicionar en Google.",
+            feat7Title: "Bandeja de mensajes",
+            feat7Desc: "Todas tus conversaciones de múltiples canales en un solo lugar.",
+            feat8Title: "Asistencia IA",
+            feat8Desc: "Redacta respuestas, resume conversaciones y responde al instante.",
+            feat9Title: "Automatizaciones",
+            feat9Desc: "Publica en Facebook, Instagram, TikTok, Pinterest y Google desde el mismo lugar.",
+            featLinkText: "Explorar función",
+
+            /* Steps */
+            stepsEyebrow: "Rápido y sin código",
+            stepsH2: "Publica tu catálogo en 3 pasos",
+            step1Title: "Crea una cuenta",
+            step1Body: "Importa desde Excel, Google Sheets, CSV o crea propiedades desde cero.",
+            step2Title: "Sube tus propiedades",
+            step2Body: "Importa desde Excel, Google Sheets, CSV o crea propiedades desde cero.",
+            step3Title: "Publica y da seguimiento",
+            step3Body: "Selecciona un plan y publica en un clic. Gestiona cada cliente desde el CRM.",
+
+            /* Live demo */
+            liveDemoEyebrow: "TU CATÁLOGO DE PROPIEDADES",
+            demoTitle: "Mira EasyListings en Vivo",
+            demoText: "Así ven tus clientes tus propiedades: bilingüe, con precios en DOP o USD, botón de WhatsApp en cada listing y búsqueda optimizada para móvil. Prueba EasyListings:",
+            demoMacbookHint: "↑ Pasa el cursor sobre el MacBook para deslizar la vista previa o haz clic para probar el catálogo real",
+
+            /* Integrations */
+            integrationsEyebrow: "INTEGRACIONES ESTRATÉGICAS",
+            integrationsH2: "Conecta EasyListings con las herramientas que ya usas",
+            intCustomDomain: "Google Calendar",
+            integrationsCta: "Ver todas las integraciones →",
+
+            /* Use cases */
+            useCasesEyebrow: "Diseñado para agentes inmobiliarios",
+            uc1Link: "Ver solución para agentes →",
+            uc2Link: "Ver solución para agencias →",
+            uc3Link: "Ver solución para constructoras →",
+
+            /* Blog */
+            blogEyebrow: "Nuestras Noticias",
+
+            /* FAQ */
+            faqEyebrow: "FAQ · Schema.org",
+            faqH2: "Preguntas frecuentes",
+            faq1Q: "1. ¿Qué es EasyListings?",
+            faq1A: "Software inmobiliario y CRM para agentes y agencias en República Dominicana que centraliza catálogo, publicación en redes y seguimiento de clientes.",
+            faq2Q: "2. ¿Puedo publicar en WhatsApp, Facebook e Instagram desde EasyListings?",
+            faq2A: "Sí. Conectas tus cuentas y publicas en un clic.",
+            faq3Q: "3. ¿El catálogo puede ser bilingüe?",
+            faq3A: "Sí, en español e inglés, con precios en DOP y USD.",
+            faq4Q: "4. ¿Puedo usar mi propio dominio?",
+            faq4A: "Sí. Conecta tu dominio y genera sitemaps y datos estructurados para SEO.",
+            faq5Q: "5. ¿Necesito tarjeta de crédito para empezar?",
+            faq5A: "No. La prueba es gratuita.",
+            faq6Q: "6. ¿Funciona con WhatsApp Business Cloud API?",
+            faq6A: "Sí, cumpliendo con las políticas de opt-in y ventana de 24 horas.",
+            faq7Q: "7. ¿Puedo importar mi catálogo actual?",
+            faq7A: "Sí, desde Excel o CSV.",
+            faq8Q: "8. ¿EasyListings es para agentes individuales o agencias?",
+            faq8A: "Ambos. Hay planes para agentes independientes, agencias y brokers.",
+
+            /* Footer */
+            footer_tagline: "Exhibe Tus Propiedades. Define Tu Marca.",
+            footer_col_about: "Producto",
+            footer_col_community: "Comunidad",
+            footer_col_features: "Funciones",
+            footer_about_us: "Sobre nosotros",
+            footer_terms: "Terminos de Uso",
+            footer_privacy: "Privacidad",
+            footer_contact: "Contacto",
+            footer_help: "Centro de Ayuda",
+            footer_affiliates: "Afiliados",
+            footer_blog: "Blog",
+            "foot-payment-title": "Pagos Procesados Seguros",
+            support_title: "Soporte Online",
+            support_text: "Contáctenos si tiene alguna pregunta. Nuestro equipo de soporte está aquí para atenderte.",
+            support_cta: "Escríbanos",
+            footer_credit: "Desarrollado en 🇩🇴 por Bebell Digital Solutions.",
+            footer_copyright: "Copyright © 2026 EasyListings • Todos los derechos reservados.",
+            reveal_tagline: "Exhibe Tus Propiedades. Define Tu Marca."
+        },
+
+        en: {
+            metaTitle: "EasyListings | Real Estate Software & CRM in the Dominican Republic",
+
+            nav_about: "About",
+            nav_features: "Features",
+            nav_home: "Home",
+            nav_pricing: "Pricing",
+            nav_contact: "Contact",
+            nav_cta: "Log In",
+
+            sub_catalog: "Property Catalog",
+            sub_leads: "Lead Capture",
+            sub_mobile: "Mobile Optimized",
+            sub_brand: "Brand Customization",
+            sub_analytics: "Analytics",
+
+            hero_greeting: "Welcome!",
+            hero_title: "Your real estate business, organized in one place.",
+            hero_subtitle: "EasyListings brings your properties, clients, and sales opportunities together in one platform designed to help you manage and grow your real estate business.",
+            hero_cta: "Create your Listing",
+            hero_video: "Watch Demo Video",
+            heroMicrocopy: "No credit card required · Built for the Dominican market",
+            heroWaLink: "Chat on WhatsApp",
+
+            socialProofHeadline: "Trusted by agents and agencies in Santo Domingo, Punta Cana, Santiago and Las Terrenas",
+            stat1Label: "listings published",
+            stat2Label: "active agents",
+            stat3Label: "less time publishing",
+
+            problemEyebrow: "The cost of manual posting",
+            problemH2: "Still copy-pasting listings across every social channel?",
+            problemBody: "Publishing a property to WhatsApp, Facebook, Instagram and your website should take seconds — not an afternoon. And when a lead comes in, where did the conversation go? EasyListings unifies your catalog, your channels and your follow-up in one place.",
+            probBullet1: "Manual posting on every channel",
+            probDesc1: "Uploading 20 photos one by one to Instagram, Facebook and WhatsApp Status takes hours.",
+            probBullet2: "Leads lost in WhatsApp threads",
+            probDesc2: "Buyer inquiries buried under hundreds of messages with no reminders or visual pipeline.",
+            probBullet3: "No data on which listing drives interest",
+            probDesc3: "Sharing links blindly without knowing how many buyers viewed or clicked to chat.",
+            probBullet4: "Outdated catalogs",
+            probDesc4: "Updating a DOP or USD price means manually editing dozens of old social posts.",
+
+            featuresEyebrow: "Real estate listing management",
+            featuresH2: "Everything your real estate business needs, in one dashboard",
+            feat1Title: "One-click catalog",
+            feat1Desc: "Upload or import listings and publish them anywhere, without rewriting a thing.",
+            feat2Title: "Built-in pipeline",
+            feat2Desc: "Capture leads from your lead form and follow up with a visual pipeline.",
+            feat3Title: "Client management",
+            feat3Desc: "Organize each contact's data and history in one place.",
+            feat4Title: "Per-listing analytics",
+            feat4Desc: "See views, WhatsApp clicks, shares and leads for every listing.",
+            feat5Title: "Multilingual interface",
+            feat5Desc: "Catalog in Spanish and English, priced in DOP and USD.",
+            feat6Title: "Custom domain + SEO",
+            feat6Desc: "Use your own domain, generate sitemaps and structured data to rank on Google.",
+            feat7Title: "Message inbox",
+            feat7Desc: "All your conversations from multiple channels in one place.",
+            feat8Title: "AI assistance",
+            feat8Desc: "Draft replies, summarize conversations and respond instantly.",
+            feat9Title: "Automations",
+            feat9Desc: "Publish to Facebook, Instagram, TikTok, Pinterest and Google from the same place.",
+            featLinkText: "Explore feature",
+
+            stepsEyebrow: "Quick and code-free",
+            stepsH2: "Publish your catalog in 3 steps",
+            step1Title: "Create an account",
+            step1Body: "Import from Excel, Google Sheets, CSV or create properties from scratch.",
+            step2Title: "Upload your properties",
+            step2Body: "Import from Excel, Google Sheets, CSV or create properties from scratch.",
+            step3Title: "Publish and follow up",
+            step3Body: "Select a plan and publish in one click. Manage every client from the CRM.",
+
+            liveDemoEyebrow: "YOUR PROPERTY CATALOG",
+            demoTitle: "See EasyListings Live",
+            demoText: "This is how your clients see your properties: bilingual, with prices in DOP or USD, a WhatsApp button on every listing, and mobile-optimized search. Try EasyListings:",
+            demoMacbookHint: "↑ Hover the MacBook to scroll the preview or click to try the real catalog",
+
+            integrationsEyebrow: "STRATEGIC INTEGRATIONS",
+            integrationsH2: "Connect EasyListings with the tools you already use",
+            intCustomDomain: "Google Calendar",
+            integrationsCta: "See all integrations →",
+
+            useCasesEyebrow: "Designed for real estate agents",
+            uc1Link: "See solution for agents →",
+            uc2Link: "See solution for agencies →",
+            uc3Link: "See solution for developers →",
+
+            blogEyebrow: "Our News",
+
+            faqEyebrow: "FAQ · Schema.org",
+            faqH2: "Frequently asked questions",
+            faq1Q: "1. What is EasyListings?",
+            faq1A: "Real estate software and CRM for agents and agencies in the Dominican Republic that unifies your catalog, social publishing and lead follow-up.",
+            faq2Q: "2. Can I publish to WhatsApp, Facebook and Instagram from EasyListings?",
+            faq2A: "Yes. Connect your accounts and publish in one click.",
+            faq3Q: "3. Can my catalog be bilingual?",
+            faq3A: "Yes, in Spanish and English, priced in DOP and USD.",
+            faq4Q: "4. Can I use my own domain?",
+            faq4A: "Yes. Connect your domain and generate sitemaps and structured data for SEO.",
+            faq5Q: "5. Do I need a credit card to start?",
+            faq5A: "No. The trial is free.",
+            faq6Q: "6. Does it work with WhatsApp Business Cloud API?",
+            faq6A: "Yes, compliant with opt-in and 24-hour window policies.",
+            faq7Q: "7. Can I import my current catalog?",
+            faq7A: "Yes, from Excel or CSV.",
+            faq8Q: "8. Is EasyListings for individual agents or agencies?",
+            faq8A: "Both. Plans exist for independent agents, agencies and brokers.",
+
+            footer_tagline: "Show Your Properties. Define Your Brand.",
+            footer_col_about: "Product",
+            footer_col_community: "Community",
+            footer_col_features: "Features",
+            footer_about_us: "About us",
+            footer_terms: "Terms of Use",
+            footer_privacy: "Privacy",
+            footer_contact: "Contact",
+            footer_help: "Help Center",
+            footer_affiliates: "Affiliates",
+            footer_blog: "Blog",
+            "foot-payment-title": "Secure Payment Processing",
+            support_title: "Online Support",
+            support_text: "Contact us if you have any questions. Our team is here to help you.",
+            support_cta: "Message Us",
+            footer_credit: "Built in 🇩🇴 by Bebell Digital Solutions.",
+            footer_copyright: "Copyright © 2026 EasyListings • All rights reserved.",
+            reveal_tagline: "Show Your Properties. Define Your Brand."
+        },
+        
+        fr: {
+            metaTitle: "EasyListings | Logiciel immobilier et CRM en République dominicaine",
+
+            nav_about: "À propos",
+            nav_features: "Fonctionnalités",
+            nav_home: "Accueil",
+            nav_pricing: "Tarifs",
+            nav_contact: "Contact",
+            nav_cta: "Se connecter",
+
+            sub_catalog: "Catalogue de biens",
+            sub_leads: "Capture de prospects",
+            sub_mobile: "Optimisé pour mobile",
+            sub_brand: "Personnalisation de la marque",
+            sub_analytics: "Analytique",
+
+            hero_greeting: "Bienvenue !",
+            hero_title: "Votre activité immobilière, organisée en un seul endroit.",
+            hero_subtitle: "EasyListings réunit vos biens, vos clients et vos opportunités de vente sur une seule plateforme conçue pour vous aider à gérer et à développer votre activité immobilière.",
+            hero_cta: "Créez votre annonce",
+            hero_video: "Regarder la démo vidéo",
+            heroMicrocopy: "Aucune carte bancaire requise · Conçu pour le marché dominicain",
+            heroWaLink: "Discuter sur WhatsApp",
+
+            socialProofHeadline: "Approuvé par des agents et des agences à Saint-Domingue, Punta Cana, Santiago et Las Terrenas",
+            stat1Label: "annonces publiées",
+            stat2Label: "agents actifs",
+            stat3Label: "moins de temps pour publier",
+
+            problemEyebrow: "Le coût de la publication manuelle",
+            problemH2: "Vous copiez-collez encore vos annonces sur tous les réseaux sociaux ?",
+            problemBody: "Publier un bien sur WhatsApp, Facebook, Instagram et votre site web devrait prendre quelques secondes — pas tout un après-midi. Et quand un prospect arrive, où est passée la conversation ? EasyListings unifie votre catalogue, vos canaux et votre suivi au même endroit.",
+            probBullet1: "Publication manuelle sur chaque canal",
+            probDesc1: "Téléverser 20 photos une par une sur Instagram, Facebook et le statut WhatsApp prend des heures.",
+            probBullet2: "Prospects perdus dans les fils WhatsApp",
+            probDesc2: "Les demandes des acheteurs enfouies sous des centaines de messages, sans rappels ni pipeline visuel.",
+            probBullet3: "Aucune donnée sur l’annonce qui suscite l’intérêt",
+            probDesc3: "Partager des liens à l’aveugle sans savoir combien d’acheteurs ont consulté ou cliqué pour discuter.",
+            probBullet4: "Catalogues obsolètes",
+            probDesc4: "Mettre à jour un prix en DOP ou USD oblige à modifier manuellement des dizaines d’anciennes publications sur les réseaux sociaux.",
+
+            featuresEyebrow: "Gestion d’annonces immobilières",
+            featuresH2: "Tout ce dont votre activité immobilière a besoin, dans un seul tableau de bord",
+            feat1Title: "Catalogue en un clic",
+            feat1Desc: "Importez ou téléversez vos annonces et publiez-les partout, sans rien réécrire.",
+            feat2Title: "Pipeline intégré",
+            feat2Desc: "Capturez des prospects via votre formulaire et assurez le suivi avec un pipeline visuel.",
+            feat3Title: "Gestion des clients",
+            feat3Desc: "Organisez les données et l’historique de chaque contact au même endroit.",
+            feat4Title: "Analytique par annonce",
+            feat4Desc: "Consultez les vues, clics WhatsApp, partages et prospects pour chaque annonce.",
+            feat5Title: "Interface multilingue",
+            feat5Desc: "Catalogue en espagnol et en anglais, avec des prix en DOP et USD.",
+            feat6Title: "Domaine personnalisé + SEO",
+            feat6Desc: "Utilisez votre propre domaine, générez des sitemaps et des données structurées pour vous classer sur Google.",
+            feat7Title: "Boîte de réception",
+            feat7Desc: "Toutes vos conversations issues de plusieurs canaux au même endroit.",
+            feat8Title: "Assistance IA",
+            feat8Desc: "Rédigez des réponses, résumez les conversations et répondez instantanément.",
+            feat9Title: "Automatisations",
+            feat9Desc: "Publiez sur Facebook, Instagram, TikTok, Pinterest et Google depuis un même endroit.",
+            featLinkText: "Découvrir la fonctionnalité",
+
+            stepsEyebrow: "Rapide et sans code",
+            stepsH2: "Publiez votre catalogue en 3 étapes",
+            step1Title: "Créez un compte",
+            step1Body: "Importez depuis Excel, Google Sheets, CSV ou créez des biens à partir de zéro.",
+            step2Title: "Téléversez vos biens",
+            step2Body: "Importez depuis Excel, Google Sheets, CSV ou créez des biens à partir de zéro.",
+            step3Title: "Publiez et assurez le suivi",
+            step3Body: "Sélectionnez un forfait et publiez en un clic. Gérez chaque client depuis le CRM.",
+
+            liveDemoEyebrow: "CATALOGUE DE BIENS",
+            demoTitle: "Voyez EasyListings en direct",
+            demoText: "Voici comment vos clients voient vos biens : bilingue, avec des prix en DOP ou USD, un bouton WhatsApp sur chaque annonce et une recherche optimisée pour mobile. Essayez EasyListings :",
+            demoMacbookHint: "↑ Survolez le MacBook pour faire défiler l’aperçu ou cliquez pour essayer le catalogue réel",
+
+            integrationsEyebrow: "INTÉGRATIONS STRATÉGIQUES",
+            integrationsH2: "Connectez EasyListings aux outils que vous utilisez déjà",
+            intCustomDomain: "Google Calendar",
+            integrationsCta: "Voir toutes les intégrations →",
+
+            useCasesEyebrow: "Conçu pour les agents immobiliers",
+            uc1Link: "Voir la solution pour les agents →",
+            uc2Link: "Voir la solution pour les agences →",
+            uc3Link: "Voir la solution pour les promoteurs →",
+
+            blogEyebrow: "Nos actualités",
+
+            faqEyebrow: "FAQ · Schema.org",
+            faqH2: "Questions fréquentes",
+            faq1Q: "1. Qu’est-ce qu’EasyListings ?",
+            faq1A: "Logiciel immobilier et CRM pour les agents et agences en République dominicaine, qui unifie votre catalogue, la publication sur les réseaux sociaux et le suivi des prospects.",
+            faq2Q: "2. Puis-je publier sur WhatsApp, Facebook et Instagram depuis EasyListings ?",
+            faq2A: "Oui. Connectez vos comptes et publiez en un clic.",
+            faq3Q: "3. Mon catalogue peut-il être bilingue ?",
+            faq3A: "Oui, en espagnol et en anglais, avec des prix en DOP et USD.",
+            faq4Q: "4. Puis-je utiliser mon propre domaine ?",
+            faq4A: "Oui. Connectez votre domaine et générez des sitemaps et des données structurées pour le SEO.",
+            faq5Q: "5. Ai-je besoin d’une carte bancaire pour commencer ?",
+            faq5A: "Non. L’essai est gratuit.",
+            faq6Q: "6. Fonctionne-t-il avec l’API WhatsApp Business Cloud ?",
+            faq6A: "Oui, conformément aux politiques d’opt-in et de fenêtre de 24 heures.",
+            faq7Q: "7. Puis-je importer mon catalogue actuel ?",
+            faq7A: "Oui, depuis Excel ou CSV.",
+            faq8Q: "8. EasyListings est-il destiné aux agents individuels ou aux agences ?",
+            faq8A: "Les deux. Des forfaits existent pour les agents indépendants, les agences et les courtiers.",
+
+            footer_tagline: "Affichez vos biens. Affirmez votre marque.",
+            footer_col_about: "Produit",
+            footer_col_community: "Communauté",
+            footer_col_features: "Fonctionnalités",
+            footer_about_us: "À propos",
+            footer_terms: "Conditions d’utilisation",
+            footer_privacy: "Confidentialité",
+            footer_contact: "Contact",
+            footer_help: "Centre d’aide",
+            footer_affiliates: "Affiliés",
+            footer_blog: "Blog",
+            "foot-payment-title": "Traitement des paiements sécurisé",
+            support_title: "Assistance en ligne",
+            support_text: "Contactez-nous si vous avez des questions. Notre équipe est là pour vous aider.",
+            support_cta: "Écrivez-nous",
+            footer_credit: "Conçu en 🇩🇴 par Bebell Digital Solutions.",
+            footer_copyright: "Copyright © 2026 EasyListings • Tous droits réservés.",
+            reveal_tagline: "Affichez vos biens. Affirmez votre marque."
+        },
+        
+        it: {
+            metaTitle: "EasyListings | Software immobiliare e CRM nella Repubblica Dominicana",
+
+            nav_about: "Chi siamo",
+            nav_features: "Funzionalità",
+            nav_home: "Home",
+            nav_pricing: "Prezzi",
+            nav_contact: "Contatti",
+            nav_cta: "Accedi",
+
+            sub_catalog: "Catalogo immobili",
+            sub_leads: "Acquisizione contatti",
+            sub_mobile: "Ottimizzato per mobile",
+            sub_brand: "Personalizzazione del brand",
+            sub_analytics: "Analisi",
+
+            hero_greeting: "Benvenuto!",
+            hero_title: "La tua attività immobiliare, organizzata in un unico posto.",
+            hero_subtitle: "EasyListings riunisce i tuoi immobili, i clienti e le opportunità di vendita in un'unica piattaforma progettata per aiutarti a gestire e far crescere la tua attività immobiliare.",
+            hero_cta: "Crea il tuo annuncio",
+            hero_video: "Guarda il video demo",
+            heroMicrocopy: "Nessuna carta di credito richiesta · Pensato per il mercato dominicano",
+            heroWaLink: "Chatta su WhatsApp",
+
+            socialProofHeadline: "Scelto da agenti e agenzie a Santo Domingo, Punta Cana, Santiago e Las Terrenas",
+            stat1Label: "annunci pubblicati",
+            stat2Label: "agenti attivi",
+            stat3Label: "meno tempo per pubblicare",
+
+            problemEyebrow: "Il costo della pubblicazione manuale",
+            problemH2: "Ancora a copiare e incollare annunci su ogni canale social?",
+            problemBody: "Pubblicare un immobile su WhatsApp, Facebook, Instagram e sul tuo sito web dovrebbe richiedere pochi secondi — non un intero pomeriggio. E quando arriva un contatto, dov'è finita la conversazione? EasyListings unifica il tuo catalogo, i tuoi canali e il tuo follow-up in un unico posto.",
+            probBullet1: "Pubblicazione manuale su ogni canale",
+            probDesc1: "Caricare 20 foto una per una su Instagram, Facebook e WhatsApp Status richiede ore.",
+            probBullet2: "Contatti persi nei thread di WhatsApp",
+            probDesc2: "Richieste degli acquirenti sepolte sotto centinaia di messaggi, senza promemoria né pipeline visuale.",
+            probBullet3: "Nessun dato su quale annuncio genera interesse",
+            probDesc3: "Condividere link alla cieca senza sapere quanti acquirenti hanno visualizzato o cliccato per chattare.",
+            probBullet4: "Cataloghi obsoleti",
+            probDesc4: "Aggiornare un prezzo in DOP o USD significa modificare manualmente decine di vecchi post sui social.",
+
+            featuresEyebrow: "Gestione degli annunci immobiliari",
+            featuresH2: "Tutto ciò che serve alla tua attività immobiliare, in un'unica dashboard",
+            feat1Title: "Catalogo con un clic",
+            feat1Desc: "Carica o importa gli annunci e pubblicali ovunque, senza riscrivere nulla.",
+            feat2Title: "Pipeline integrata",
+            feat2Desc: "Acquisisci contatti dal tuo modulo e gestisci il follow-up con una pipeline visuale.",
+            feat3Title: "Gestione clienti",
+            feat3Desc: "Organizza i dati e la cronologia di ogni contatto in un unico posto.",
+            feat4Title: "Analisi per annuncio",
+            feat4Desc: "Visualizza visualizzazioni, clic su WhatsApp, condivisioni e contatti per ogni annuncio.",
+            feat5Title: "Interfaccia multilingue",
+            feat5Desc: "Catalogo in spagnolo e inglese, con prezzi in DOP e USD.",
+            feat6Title: "Dominio personalizzato + SEO",
+            feat6Desc: "Usa il tuo dominio, genera sitemap e dati strutturati per posizionarti su Google.",
+            feat7Title: "Casella dei messaggi",
+            feat7Desc: "Tutte le tue conversazioni da più canali in un unico posto.",
+            feat8Title: "Assistenza IA",
+            feat8Desc: "Scrivi risposte, riassumi le conversazioni e rispondi all'istante.",
+            feat9Title: "Automazioni",
+            feat9Desc: "Pubblica su Facebook, Instagram, TikTok, Pinterest e Google dallo stesso posto.",
+            featLinkText: "Scopri la funzionalità",
+
+            stepsEyebrow: "Veloce e senza codice",
+            stepsH2: "Pubblica il tuo catalogo in 3 passaggi",
+            step1Title: "Crea un account",
+            step1Body: "Importa da Excel, Google Sheets, CSV o crea immobili da zero.",
+            step2Title: "Carica i tuoi immobili",
+            step2Body: "Importa da Excel, Google Sheets, CSV o crea immobili da zero.",
+            step3Title: "Pubblica e gestisci il follow-up",
+            step3Body: "Scegli un piano e pubblica con un clic. Gestisci ogni cliente dal CRM.",
+
+            liveDemoEyebrow: "CATALOGO IMMOBILI",
+            demoTitle: "Guarda EasyListings in diretta",
+            demoText: "Ecco come i tuoi clienti vedono i tuoi immobili: bilingue, con prezzi in DOP o USD, un pulsante WhatsApp su ogni annuncio e una ricerca ottimizzata per mobile. Prova EasyListings:",
+            demoMacbookHint: "↑ Passa il mouse sul MacBook per scorrere l'anteprima o clicca per provare il catalogo reale",
+
+            integrationsEyebrow: "INTEGRAZIONI STRATEGICHE",
+            integrationsH2: "Collega EasyListings agli strumenti che già utilizzi",
+            intCustomDomain: "Google Calendar",
+            integrationsCta: "Vedi tutte le integrazioni →",
+
+            useCasesEyebrow: "Progettato per gli agenti immobiliari",
+            uc1Link: "Scopri la soluzione per gli agenti →",
+            uc2Link: "Scopri la soluzione per le agenzie →",
+            uc3Link: "Scopri la soluzione per i costruttori →",
+
+            blogEyebrow: "Le nostre notizie",
+
+            faqEyebrow: "FAQ · Schema.org",
+            faqH2: "Domande frequenti",
+            faq1Q: "1. Che cos'è EasyListings?",
+            faq1A: "Software immobiliare e CRM per agenti e agenzie nella Repubblica Dominicana che unifica il tuo catalogo, la pubblicazione sui social e il follow-up dei contatti.",
+            faq2Q: "2. Posso pubblicare su WhatsApp, Facebook e Instagram da EasyListings?",
+            faq2A: "Sì. Collega i tuoi account e pubblica con un clic.",
+            faq3Q: "3. Il mio catalogo può essere bilingue?",
+            faq3A: "Sì, in spagnolo e inglese, con prezzi in DOP e USD.",
+            faq4Q: "4. Posso usare il mio dominio?",
+            faq4A: "Sì. Collega il tuo dominio e genera sitemap e dati strutturati per la SEO.",
+            faq5Q: "5. Serve una carta di credito per iniziare?",
+            faq5A: "No. La prova è gratuita.",
+            faq6Q: "6. Funziona con l'API WhatsApp Business Cloud?",
+            faq6A: "Sì, nel rispetto delle politiche di opt-in e della finestra di 24 ore.",
+            faq7Q: "7. Posso importare il mio catalogo attuale?",
+            faq7A: "Sì, da Excel o CSV.",
+            faq8Q: "8. EasyListings è per agenti individuali o agenzie?",
+            faq8A: "Entrambi. Esistono piani per agenti indipendenti, agenzie e broker.",
+
+            footer_tagline: "Mostra i tuoi immobili. Definisci il tuo brand.",
+            footer_col_about: "Prodotto",
+            footer_col_community: "Community",
+            footer_col_features: "Funzionalità",
+            footer_about_us: "Chi siamo",
+            footer_terms: "Termini di utilizzo",
+            footer_privacy: "Privacy",
+            footer_contact: "Contatti",
+            footer_help: "Centro assistenza",
+            footer_affiliates: "Affiliati",
+            footer_blog: "Blog",
+            "foot-payment-title": "Elaborazione dei pagamenti sicura",
+            support_title: "Assistenza online",
+            support_text: "Contattaci se hai domande. Il nostro team è qui per aiutarti.",
+            support_cta: "Scrivici",
+            footer_credit: "Realizzato in 🇩🇴 da Bebell Digital Solutions.",
+            footer_copyright: "Copyright © 2026 EasyListings • Tutti i diritti riservati.",
+            reveal_tagline: "Mostra i tuoi immobili. Definisci il tuo brand."
+        },
+        
+        de: {
+            metaTitle: "EasyListings | Immobilien-Software & CRM in der Dominikanischen Republik",
+
+            nav_about: "Über uns",
+            nav_features: "Funktionen",
+            nav_home: "Startseite",
+            nav_pricing: "Preise",
+            nav_contact: "Kontakt",
+            nav_cta: "Anmelden",
+
+            sub_catalog: "Immobilienkatalog",
+            sub_leads: "Lead-Erfassung",
+            sub_mobile: "Für Mobilgeräte optimiert",
+            sub_brand: "Markenanpassung",
+            sub_analytics: "Analytik",
+
+            hero_greeting: "Willkommen!",
+            hero_title: "Ihr Immobiliengeschäft, organisiert an einem Ort.",
+            hero_subtitle: "EasyListings vereint Ihre Immobilien, Kunden und Verkaufschancen auf einer Plattform, die Ihnen hilft, Ihr Immobiliengeschäft zu verwalten und auszubauen.",
+            hero_cta: "Inserat erstellen",
+            hero_video: "Demo-Video ansehen",
+            heroMicrocopy: "Keine Kreditkarte erforderlich · Für den dominikanischen Markt entwickelt",
+            heroWaLink: "Auf WhatsApp chatten",
+
+            socialProofHeadline: "Vertraut von Maklern und Agenturen in Santo Domingo, Punta Cana, Santiago und Las Terrenas",
+            stat1Label: "veröffentlichte Inserate",
+            stat2Label: "aktive Makler",
+            stat3Label: "weniger Zeit für die Veröffentlichung",
+
+            problemEyebrow: "Die Kosten manueller Veröffentlichung",
+            problemH2: "Kopieren und fügen Sie Ihre Inserate noch immer auf jedem Social-Media-Kanal ein?",
+            problemBody: "Eine Immobilie auf WhatsApp, Facebook, Instagram und Ihrer Website zu veröffentlichen, sollte Sekunden dauern — nicht einen ganzen Nachmittag. Und wenn ein Lead eingeht, wo ist das Gespräch geblieben? EasyListings vereint Ihren Katalog, Ihre Kanäle und Ihr Follow-up an einem Ort.",
+            probBullet1: "Manuelle Veröffentlichung auf jedem Kanal",
+            probDesc1: "20 Fotos einzeln auf Instagram, Facebook und WhatsApp-Status hochzuladen, dauert Stunden.",
+            probBullet2: "Leads, die in WhatsApp-Threads verloren gehen",
+            probDesc2: "Käuferanfragen, die unter Hunderten von Nachrichten begraben sind, ohne Erinnerungen oder visuelle Pipeline.",
+            probBullet3: "Keine Daten darüber, welches Inserat Interesse weckt",
+            probDesc3: "Links blind teilen, ohne zu wissen, wie viele Käufer sie angesehen oder zum Chatten geklickt haben.",
+            probBullet4: "Veraltete Kataloge",
+            probDesc4: "Die Aktualisierung eines Preises in DOP oder USD bedeutet, Dutzende alter Social-Media-Posts manuell zu bearbeiten.",
+
+            featuresEyebrow: "Verwaltung von Immobilieninseraten",
+            featuresH2: "Alles, was Ihr Immobiliengeschäft braucht, in einem Dashboard",
+            feat1Title: "Katalog mit einem Klick",
+            feat1Desc: "Laden Sie Inserate hoch oder importieren Sie sie und veröffentlichen Sie sie überall, ohne etwas neu zu schreiben.",
+            feat2Title: "Integrierte Pipeline",
+            feat2Desc: "Erfassen Sie Leads über Ihr Formular und verfolgen Sie sie mit einer visuellen Pipeline.",
+            feat3Title: "Kundenverwaltung",
+            feat3Desc: "Organisieren Sie die Daten und den Verlauf jedes Kontakts an einem Ort.",
+            feat4Title: "Analytik pro Inserat",
+            feat4Desc: "Sehen Sie Aufrufe, WhatsApp-Klicks, Shares und Leads für jedes Inserat.",
+            feat5Title: "Mehrsprachige Oberfläche",
+            feat5Desc: "Katalog auf Spanisch und Englisch, Preise in DOP und USD.",
+            feat6Title: "Eigene Domain + SEO",
+            feat6Desc: "Verwenden Sie Ihre eigene Domain, generieren Sie Sitemaps und strukturierte Daten, um bei Google zu ranken.",
+            feat7Title: "Nachrichten-Posteingang",
+            feat7Desc: "Alle Ihre Gespräche aus mehreren Kanälen an einem Ort.",
+            feat8Title: "KI-Unterstützung",
+            feat8Desc: "Antworten entwerfen, Gespräche zusammenfassen und sofort reagieren.",
+            feat9Title: "Automatisierungen",
+            feat9Desc: "Veröffentlichen Sie auf Facebook, Instagram, TikTok, Pinterest und Google von einem Ort aus.",
+            featLinkText: "Funktion entdecken",
+
+            stepsEyebrow: "Schnell und ohne Code",
+            stepsH2: "Veröffentlichen Sie Ihren Katalog in 3 Schritten",
+            step1Title: "Konto erstellen",
+            step1Body: "Importieren Sie aus Excel, Google Sheets, CSV oder erstellen Sie Immobilien von Grund auf.",
+            step2Title: "Immobilien hochladen",
+            step2Body: "Importieren Sie aus Excel, Google Sheets, CSV oder erstellen Sie Immobilien von Grund auf.",
+            step3Title: "Veröffentlichen und nachverfolgen",
+            step3Body: "Wählen Sie einen Tarif und veröffentlichen Sie mit einem Klick. Verwalten Sie jeden Kunden über das CRM.",
+
+            liveDemoEyebrow: "IMMOBILIENKATALOG",
+            demoTitle: "Erleben Sie EasyListings live",
+            demoText: "So sehen Ihre Kunden Ihre Immobilien: zweisprachig, mit Preisen in DOP oder USD, einem WhatsApp-Button bei jedem Inserat und einer für Mobilgeräte optimierten Suche. Testen Sie EasyListings:",
+            demoMacbookHint: "↑ Fahren Sie mit der Maus über das MacBook, um die Vorschau zu scrollen, oder klicken Sie, um den echten Katalog auszuprobieren",
+
+            integrationsEyebrow: "STRATEGISCHE INTEGRATIONEN",
+            integrationsH2: "Verbinden Sie EasyListings mit den Tools,<br> die Sie bereits nutzen",
+            intCustomDomain: "Google Calendar",
+            integrationsCta: "Alle Integrationen ansehen →",
+
+            useCasesEyebrow: "Für Immobilienmakler entwickelt",
+            uc1Link: "Lösung für Makler ansehen →",
+            uc2Link: "Lösung für Agenturen ansehen →",
+            uc3Link: "Lösung für Bauträger ansehen →",
+
+            blogEyebrow: "Unsere Neuigkeiten",
+
+            faqEyebrow: "FAQ · Schema.org",
+            faqH2: "Häufig gestellte Fragen",
+            faq1Q: "1. Was ist EasyListings?",
+            faq1A: "Immobilien-Software und CRM für Makler und Agenturen in der Dominikanischen Republik, die Ihren Katalog, die Social-Media-Veröffentlichung und das Lead-Follow-up vereint.",
+            faq2Q: "2. Kann ich von EasyListings aus auf WhatsApp, Facebook und Instagram veröffentlichen?",
+            faq2A: "Ja. Verbinden Sie Ihre Konten und veröffentlichen Sie mit einem Klick.",
+            faq3Q: "3. Kann mein Katalog zweisprachig sein?",
+            faq3A: "Ja, auf Spanisch und Englisch, mit Preisen in DOP und USD.",
+            faq4Q: "4. Kann ich meine eigene Domain verwenden?",
+            faq4A: "Ja. Verbinden Sie Ihre Domain und generieren Sie Sitemaps und strukturierte Daten für SEO.",
+            faq5Q: "5. Brauche ich eine Kreditkarte, um zu starten?",
+            faq5A: "Nein. Die Testphase ist kostenlos.",
+            faq6Q: "6. Funktioniert es mit der WhatsApp Business Cloud API?",
+            faq6A: "Ja, konform mit Opt-in- und 24-Stunden-Fenster-Richtlinien.",
+            faq7Q: "7. Kann ich meinen aktuellen Katalog importieren?",
+            faq7A: "Ja, aus Excel oder CSV.",
+            faq8Q: "8. Ist EasyListings für einzelne Makler oder Agenturen?",
+            faq8A: "Beides. Es gibt Tarife für unabhängige Makler, Agenturen und Broker.",
+
+            footer_tagline: "Zeigen Sie Ihre Immobilien. Definieren Sie Ihre Marke.",
+            footer_col_about: "Produkt",
+            footer_col_community: "Community",
+            footer_col_features: "Funktionen",
+            footer_about_us: "Über uns",
+            footer_terms: "Nutzungsbedingungen",
+            footer_privacy: "Datenschutz",
+            footer_contact: "Kontakt",
+            footer_help: "Hilfe-Center",
+            footer_affiliates: "Partner",
+            footer_blog: "Blog",
+            "foot-payment-title": "Sichere Zahlungsabwicklung",
+            support_title: "Online-Support",
+            support_text: "Kontaktieren Sie uns bei Fragen. Unser Team ist für Sie da.",
+            support_cta: "Schreiben Sie uns",
+            footer_credit: "Entwickelt in 🇩🇴 von Bebell Digital Solutions.",
+            footer_copyright: "Copyright © 2026 EasyListings • Alle Rechte vorbehalten.",
+            reveal_tagline: "Zeigen Sie Ihre Immobilien. Definieren Sie Ihre Marke."
+        },
+        
+        ru: {
+            metaTitle: "EasyListings | Программное обеспечение для недвижимости и CRM в Доминиканской Республике",
+
+            nav_about: "О нас",
+            nav_features: "Возможности",
+            nav_home: "Главная",
+            nav_pricing: "Тарифы",
+            nav_contact: "Контакты",
+            nav_cta: "Войти",
+
+            sub_catalog: "Каталог недвижимости",
+            sub_leads: "Сбор лидов",
+            sub_mobile: "Оптимизировано для мобильных",
+            sub_brand: "Настройка бренда",
+            sub_analytics: "Аналитика",
+
+            hero_greeting: "Добро пожаловать!",
+            hero_title: "Ваш бизнес недвижимости — организован в одном месте.",
+            hero_subtitle: "EasyListings объединяет ваши объекты, клиентов и возможности продаж на одной платформе, созданной, чтобы помочь вам управлять бизнесом недвижимости и развивать его.",
+            hero_cta: "Создать объявление",
+            hero_video: "Смотреть демо-видео",
+            heroMicrocopy: "Без кредитной карты · Создано для доминиканского рынка",
+            heroWaLink: "Написать в WhatsApp",
+
+            socialProofHeadline: "Нам доверяют агенты и агентства в Санто-Доминго, Пунта-Кане, Сантьяго и Лас-Терренасе",
+            stat1Label: "опубликованных объявлений",
+            stat2Label: "активных агентов",
+            stat3Label: "меньше времени на публикацию",
+
+            problemEyebrow: "Цена ручной публикации",
+            problemH2: "Всё ещё копируете и вставляете объявления на каждый канал соцсетей?",
+            problemBody: "Публикация объекта в WhatsApp, Facebook, Instagram и на вашем сайте должна занимать секунды — а не весь день. А когда приходит лид, куда девается разговор? EasyListings объединяет ваш каталог, каналы и работу с лидами в одном месте.",
+            probBullet1: "Ручная публикация на каждом канале",
+            probDesc1: "Загрузка 20 фотографий по одной в Instagram, Facebook и WhatsApp Status занимает часы.",
+            probBullet2: "Лиды, теряющиеся в переписках WhatsApp",
+            probDesc2: "Запросы покупателей погребены под сотнями сообщений, без напоминаний и визуальной воронки.",
+            probBullet3: "Нет данных о том, какое объявление вызывает интерес",
+            probDesc3: "Ссылки распространяются вслепую, без понимания, сколько покупателей просмотрели или нажали, чтобы написать.",
+            probBullet4: "Устаревшие каталоги",
+            probDesc4: "Обновление цены в DOP или USD означает ручное редактирование десятков старых постов в соцсетях.",
+
+            featuresEyebrow: "Управление объявлениями недвижимости",
+            featuresH2: "Всё, что нужно вашему бизнесу недвижимости, — в одной панели",
+            feat1Title: "Каталог в один клик",
+            feat1Desc: "Загружайте или импортируйте объявления и публикуйте их где угодно, ничего не переписывая.",
+            feat2Title: "Встроенная воронка",
+            feat2Desc: "Собирайте лиды через форму и работайте с ними в визуальной воронке.",
+            feat3Title: "Управление клиентами",
+            feat3Desc: "Организуйте данные и историю каждого контакта в одном месте.",
+            feat4Title: "Аналитика по каждому объявлению",
+            feat4Desc: "Смотрите просмотры, клики по WhatsApp, репосты и лиды по каждому объявлению.",
+            feat5Title: "Многоязычный интерфейс",
+            feat5Desc: "Каталог на испанском и английском, цены в DOP и USD.",
+            feat6Title: "Собственный домен + SEO",
+            feat6Desc: "Используйте свой домен, генерируйте sitemap и структурированные данные для продвижения в Google.",
+            feat7Title: "Входящие сообщения",
+            feat7Desc: "Все ваши переписки из разных каналов в одном месте.",
+            feat8Title: "Помощь ИИ",
+            feat8Desc: "Составляйте ответы, суммируйте переписки и отвечайте мгновенно.",
+            feat9Title: "Автоматизации",
+            feat9Desc: "Публикуйте в Facebook, Instagram, TikTok, Pinterest и Google из одного места.",
+            featLinkText: "Узнать о возможности",
+
+            stepsEyebrow: "Быстро и без кода",
+            stepsH2: "Опубликуйте каталог за 3 шага",
+            step1Title: "Создайте аккаунт",
+            step1Body: "Импортируйте из Excel, Google Sheets, CSV или создавайте объекты с нуля.",
+            step2Title: "Загрузите объекты",
+            step2Body: "Импортируйте из Excel, Google Sheets, CSV или создавайте объекты с нуля.",
+            step3Title: "Публикуйте и работайте с лидами",
+            step3Body: "Выберите тариф и публикуйте в один клик. Управляйте каждым клиентом в CRM.",
+
+            liveDemoEyebrow: "КАТАЛОГ НЕДВИЖИМОСТИ",
+            demoTitle: "Посмотрите EasyListings вживую",
+            demoText: "Так ваши клиенты видят ваши объекты: двуязычно, с ценами в DOP или USD, кнопкой WhatsApp в каждом объявлении и поиском, оптимизированным для мобильных устройств. Попробуйте EasyListings:",
+            demoMacbookHint: "↑ Наведите курсор на MacBook, чтобы прокрутить предпросмотр, или нажмите, чтобы открыть настоящий каталог",
+
+            integrationsEyebrow: "СТРАТЕГИЧЕСКИЕ ИНТЕГРАЦИИ",
+            integrationsH2: "Подключите EasyListings к инструментам,<br> которыми вы уже пользуетесь",
+            intCustomDomain: "Google Calendar",
+            integrationsCta: "Все интеграции →",
+
+            useCasesEyebrow: "Создано для агентов по недвижимости",
+            uc1Link: "Решение для агентов →",
+            uc2Link: "Решение для агентств →",
+            uc3Link: "Решение для застройщиков →",
+
+            blogEyebrow: "Наши новости",
+
+            faqEyebrow: "FAQ · Schema.org",
+            faqH2: "Часто задаваемые вопросы",
+            faq1Q: "1. Что такое EasyListings?",
+            faq1A: "Программное обеспечение для недвижимости и CRM для агентов и агентств в Доминиканской Республике, объединяющее ваш каталог, публикацию в соцсетях и работу с лидами.",
+            faq2Q: "2. Могу ли я публиковать в WhatsApp, Facebook и Instagram из EasyListings?",
+            faq2A: "Да. Подключите свои аккаунты и публикуйте в один клик.",
+            faq3Q: "3. Может ли мой каталог быть двуязычным?",
+            faq3A: "Да, на испанском и английском, с ценами в DOP и USD.",
+            faq4Q: "4. Могу ли я использовать свой домен?",
+            faq4A: "Да. Подключите домен и генерируйте sitemap и структурированные данные для SEO.",
+            faq5Q: "5. Нужна ли кредитная карта для начала?",
+            faq5A: "Нет. Пробный период бесплатный.",
+            faq6Q: "6. Работает ли это с WhatsApp Business Cloud API?",
+            faq6A: "Да, с соблюдением политик opt-in и 24-часового окна.",
+            faq7Q: "7. Могу ли я импортировать текущий каталог?",
+            faq7A: "Да, из Excel или CSV.",
+            faq8Q: "8. EasyListings — для отдельных агентов или агентств?",
+            faq8A: "Для обоих. Есть тарифы для независимых агентов, агентств и брокеров.",
+
+            footer_tagline: "Покажите свои объекты. Определите свой бренд.",
+            footer_col_about: "Продукт",
+            footer_col_community: "Сообщество",
+            footer_col_features: "Возможности",
+            footer_about_us: "О нас",
+            footer_terms: "Условия использования",
+            footer_privacy: "Конфиденциальность",
+            footer_contact: "Контакты",
+            footer_help: "Центр помощи",
+            footer_affiliates: "Партнёры",
+            footer_blog: "Блог",
+            "foot-payment-title": "Безопасная обработка платежей",
+            support_title: "Онлайн-поддержка",
+            support_text: "Свяжитесь с нами, если у вас есть вопросы. Наша команда готова помочь.",
+            support_cta: "Написать нам",
+            footer_credit: "Создано в 🇩🇴 компанией Bebell Digital Solutions.",
+            footer_copyright: "Copyright © 2026 EasyListings • Все права защищены.",
+            reveal_tagline: "Покажите свои объекты. Определите свой бренд."
+        },
+        
+        zh: {
+            metaTitle: "EasyListings | 多米尼加共和国房地产软件与 CRM",
+
+            nav_about: "关于",
+            nav_features: "功能",
+            nav_home: "首页",
+            nav_pricing: "价格",
+            nav_contact: "联系我们",
+            nav_cta: "登录",
+
+            sub_catalog: "房源目录",
+            sub_leads: "线索获取",
+            sub_mobile: "移动端优化",
+            sub_brand: "品牌定制",
+            sub_analytics: "数据分析",
+
+            hero_greeting: "欢迎！",
+            hero_title: "您的房产业务，集中在一个地方管理。",
+            hero_subtitle: "EasyListings 将您的房源、客户和销售机会整合到一个平台，帮助您管理和拓展房产业务。",
+            hero_cta: "创建您的房源",
+            hero_video: "观看演示视频",
+            heroMicrocopy: "无需信用卡 · 专为多米尼加市场打造",
+            heroWaLink: "在 WhatsApp 上聊天",
+
+            socialProofHeadline: "深受圣多明各、蓬塔卡纳、圣地亚哥和拉斯特雷纳斯经纪人与机构的信赖",
+            stat1Label: "已发布房源",
+            stat2Label: "活跃经纪人",
+            stat3Label: "更少的发布用时",
+
+            problemEyebrow: "手动发布的代价",
+            problemH2: "还在把房源复制粘贴到每个社交渠道吗？",
+            problemBody: "将一处房源发布到 WhatsApp、Facebook、Instagram 和您的网站本应只需几秒钟——而不是一个下午。而当线索到来时，对话又去了哪里？EasyListings 将您的目录、渠道和跟进工作统一在一个地方。",
+            probBullet1: "在每个渠道手动发布",
+            probDesc1: "把 20 张照片逐一上传到 Instagram、Facebook 和 WhatsApp 状态需要数小时。",
+            probBullet2: "线索淹没在 WhatsApp 对话中",
+            probDesc2: "买家咨询被埋在数百条消息之下，没有提醒，也没有可视化销售管道。",
+            probBullet3: "无法得知哪条房源带来兴趣",
+            probDesc3: "盲目分享链接，不知道有多少买家浏览或点击聊天。",
+            probBullet4: "过时的目录",
+            probDesc4: "更新 DOP 或 USD 价格意味着要手动编辑几十条旧的社交帖子。",
+
+            featuresEyebrow: "房源管理",
+            featuresH2: "您的房产业务所需的一切，尽在一个仪表盘",
+            feat1Title: "一键目录",
+            feat1Desc: "上传或导入房源，一键发布到任何地方，无需重新撰写。",
+            feat2Title: "内置销售管道",
+            feat2Desc: "通过线索表单获取线索，并用可视化管道进行跟进。",
+            feat3Title: "客户管理",
+            feat3Desc: "在一个地方整理每位联系人的数据和历史记录。",
+            feat4Title: "每条房源的分析",
+            feat4Desc: "查看每条房源的浏览量、WhatsApp 点击、分享和线索。",
+            feat5Title: "多语言界面",
+            feat5Desc: "目录支持西班牙语和英语，价格以 DOP 和 USD 显示。",
+            feat6Title: "自定义域名 + SEO",
+            feat6Desc: "使用您自己的域名，生成站点地图和结构化数据，以在 Google 上获得排名。",
+            feat7Title: "消息收件箱",
+            feat7Desc: "来自多个渠道的所有对话集中在一个地方。",
+            feat8Title: "AI 助手",
+            feat8Desc: "起草回复、总结对话并即时响应。",
+            feat9Title: "自动化",
+            feat9Desc: "从同一处发布到 Facebook、Instagram、TikTok、Pinterest 和 Google。",
+            featLinkText: "了解功能",
+
+            stepsEyebrow: "快速且无需代码",
+            stepsH2: "3 步发布您的目录",
+            step1Title: "创建账户",
+            step1Body: "从 Excel、Google Sheets、CSV 导入，或从零创建房源。",
+            step2Title: "上传您的房源",
+            step2Body: "从 Excel、Google Sheets、CSV 导入，或从零创建房源。",
+            step3Title: "发布并跟进",
+            step3Body: "选择套餐并一键发布。在 CRM 中管理每一位客户。",
+
+            liveDemoEyebrow: "房源目录",
+            demoTitle: "实时体验 EasyListings",
+            demoText: "这就是您的客户看到房源的方式：双语显示，价格以 DOP 或 USD 呈现，每条房源都有 WhatsApp 按钮，并针对移动端优化搜索。立即体验 EasyListings",
+            demoMacbookHint: "↑ 将鼠标悬停在 MacBook 上以滚动预览，或点击体验真实目录",
+
+            integrationsEyebrow: "战略集成",
+            integrationsH2: "将 EasyListings 与您已在使用的工具<br> 连接起来",
+            intCustomDomain: "Google Calendar",
+            integrationsCta: "查看所有集成 →",
+
+            useCasesEyebrow: "专为房地产经纪人设计",
+            uc1Link: "查看经纪人解决方案 →",
+            uc2Link: "查看机构解决方案 →",
+            uc3Link: "查看开发商解决方案 →",
+
+            blogEyebrow: "我们的新闻",
+
+            faqEyebrow: "常见问题 · Schema.org",
+            faqH2: "常见问题",
+            faq1Q: "1. 什么是 EasyListings？",
+            faq1A: "面向多米尼加共和国经纪人和机构的房地产软件与 CRM，统一您的目录、社交发布和线索跟进。",
+            faq2Q: "2. 我可以从 EasyListings 发布到 WhatsApp、Facebook 和 Instagram 吗？",
+            faq2A: "可以。连接您的账户并一键发布。",
+            faq3Q: "3. 我的目录可以双语显示吗？",
+            faq3A: "可以，支持西班牙语和英语，价格以 DOP 和 USD 显示。",
+            faq4Q: "4. 我可以使用自己的域名吗？",
+            faq4A: "可以。连接您的域名，并为 SEO 生成站点地图和结构化数据。",
+            faq5Q: "5. 开始使用需要信用卡吗？",
+            faq5A: "不需要。试用免费。",
+            faq6Q: "6. 它支持 WhatsApp Business Cloud API 吗？",
+            faq6A: "支持，符合选择加入（opt-in）和 24 小时窗口政策。",
+            faq7Q: "7. 我可以导入当前的目录吗？",
+            faq7A: "可以，从 Excel 或 CSV 导入。",
+            faq8Q: "8. EasyListings 适用于个人经纪人还是机构？",
+            faq8A: "两者皆适用。有面向独立经纪人、机构和经纪商的套餐。",
+
+            footer_tagline: "展示您的房源。定义您的品牌。",
+            footer_col_about: "产品",
+            footer_col_community: "社区",
+            footer_col_features: "功能",
+            footer_about_us: "关于我们",
+            footer_terms: "使用条款",
+            footer_privacy: "隐私",
+            footer_contact: "联系我们",
+            footer_help: "帮助中心",
+            footer_affiliates: "合作伙伴",
+            footer_blog: "博客",
+            "foot-payment-title": "安全支付处理",
+            support_title: "在线支持",
+            support_text: "如有任何问题，请联系我们。我们的团队随时为您提供帮助。",
+            support_cta: "给我们留言",
+            footer_credit: "由 Bebell Digital Solutions 在 🇩🇴 打造。",
+            footer_copyright: "版权所有 © 2026 EasyListings • 保留所有权利。",
+            reveal_tagline: "展示您的房源。定义您的品牌。"
+        },
+        
+        ja: {
+            metaTitle: "EasyListings | ドミニカ共和国の不動産ソフトウェア＆CRM",
+
+            nav_about: "会社概要",
+            nav_features: "機能",
+            nav_home: "ホーム",
+            nav_pricing: "料金",
+            nav_contact: "お問い合わせ",
+            nav_cta: "ログイン",
+
+            sub_catalog: "物件カタログ",
+            sub_leads: "リード獲得",
+            sub_mobile: "モバイル最適化",
+            sub_brand: "ブランドカスタマイズ",
+            sub_analytics: "分析",
+
+            hero_greeting: "ようこそ！",
+            hero_title: "不動産ビジネスを、一か所で整理。",
+            hero_subtitle: "EasyListings は、物件・顧客・販売機会を一つのプラットフォームに集約し、不動産ビジネスの管理と成長を支援します。",
+            hero_cta: "物件を登録する",
+            hero_video: "デモ動画を見る",
+            heroMicrocopy: "クレジットカード不要 · ドミニカ市場向けに構築",
+            heroWaLink: "WhatsApp でチャット",
+
+            socialProofHeadline: "サントドミンゴ、プンタカナ、サンティアゴ、ラス・テレナスのエージェントや代理店に信頼されています",
+            stat1Label: "公開済み物件",
+            stat2Label: "アクティブなエージェント",
+            stat3Label: "公開にかかる時間を短縮",
+
+            problemEyebrow: "手動投稿のコスト",
+            problemH2: "まだすべてのSNSチャネルに物件をコピー＆ペーストしていますか？",
+            problemBody: "物件を WhatsApp、Facebook、Instagram、そして自社サイトに公開するのは、午後一杯ではなく数秒で済むべきです。そしてリードが届いたとき、その会話はどこへ？EasyListings はカタログ、チャネル、フォローアップを一か所に統合します。",
+            probBullet1: "各チャネルへの手動投稿",
+            probDesc1: "20枚の写真を1枚ずつ Instagram、Facebook、WhatsApp ステータスにアップロードするには何時間もかかります。",
+            probBullet2: "WhatsApp のスレッドで失われるリード",
+            probDesc2: "購入者の問い合わせが何百ものメッセージに埋もれ、リマインダーもビジュアルパイプラインもありません。",
+            probBullet3: "どの物件が関心を集めているかのデータがない",
+            probDesc3: "何人の購入者が閲覧したか、チャットのためにクリックしたかを知らずにリンクを盲目的に共有。",
+            probBullet4: "古くなったカタログ",
+            probDesc4: "DOP や USD の価格を更新するには、何十件もの古いSNS投稿を手動で編集する必要があります。",
+
+            featuresEyebrow: "不動産物件管理",
+            featuresH2: "不動産ビジネスに必要なすべてを、一つのダッシュボードに",
+            feat1Title: "ワンクリックカタログ",
+            feat1Desc: "物件をアップロードまたはインポートし、何も書き直すことなくどこにでも公開できます。",
+            feat2Title: "組み込みパイプライン",
+            feat2Desc: "リードフォームからリードを獲得し、ビジュアルパイプラインでフォローアップ。",
+            feat3Title: "顧客管理",
+            feat3Desc: "各連絡先のデータと履歴を一か所で整理。",
+            feat4Title: "物件ごとの分析",
+            feat4Desc: "各物件の閲覧数、WhatsApp クリック、シェア、リードを確認できます。",
+            feat5Title: "多言語インターフェース",
+            feat5Desc: "カタログはスペイン語と英語、価格は DOP と USD で表示。",
+            feat6Title: "カスタムドメイン + SEO",
+            feat6Desc: "独自ドメインを使用し、サイトマップと構造化データを生成して Google で上位表示。",
+            feat7Title: "メッセージ受信箱",
+            feat7Desc: "複数チャネルのすべての会話を一か所に。",
+            feat8Title: "AI アシスタント",
+            feat8Desc: "返信の下書き、会話の要約、即時対応が可能。",
+            feat9Title: "自動化",
+            feat9Desc: "同じ場所から Facebook、Instagram、TikTok、Pinterest、Google に公開。",
+            featLinkText: "機能を見る",
+
+            stepsEyebrow: "迅速かつコード不要",
+            stepsH2: "3ステップでカタログを公開",
+            step1Title: "アカウントを作成",
+            step1Body: "Excel、Google Sheets、CSV からインポートするか、ゼロから物件を作成。",
+            step2Title: "物件をアップロード",
+            step2Body: "Excel、Google Sheets、CSV からインポートするか、ゼロから物件を作成。",
+            step3Title: "公開してフォローアップ",
+            step3Body: "プランを選択してワンクリックで公開。CRM で各顧客を管理。",
+
+            liveDemoEyebrow: "物件カタログ",
+            demoTitle: "EasyListings をライブで見る",
+            demoText: "お客様が物件を目にするのはこの画面です。バイリンガル表示、DOP または USD での価格、各物件に WhatsApp ボタン、モバイル最適化された検索。EasyListings をお試しください：",
+            demoMacbookHint: "↑ MacBook にカーソルを合わせてプレビューをスクロール、またはクリックして実際のカタログをお試しください",
+
+            integrationsEyebrow: "戦略的インテグレーション",
+            integrationsH2: "EasyListings を、すでにお使いのツール<br> と連携",
+            intCustomDomain: "Google Calendar",
+            integrationsCta: "すべての連携を見る →",
+
+            useCasesEyebrow: "不動産エージェントのために設計",
+            uc1Link: "エージェント向けソリューションを見る →",
+            uc2Link: "代理店向けソリューションを見る →",
+            uc3Link: "デベロッパー向けソリューションを見る →",
+
+            blogEyebrow: "お知らせ",
+
+            faqEyebrow: "FAQ · Schema.org",
+            faqH2: "よくある質問",
+            faq1Q: "1. EasyListings とは何ですか？",
+            faq1A: "ドミニカ共和国のエージェントや代理店向けの不動産ソフトウェアおよび CRM で、カタログ、SNS 投稿、リードフォローアップを統合します。",
+            faq2Q: "2. EasyListings から WhatsApp、Facebook、Instagram に投稿できますか？",
+            faq2A: "はい。アカウントを連携してワンクリックで投稿できます。",
+            faq3Q: "3. カタログをバイリンガルにできますか？",
+            faq3A: "はい、スペイン語と英語で、価格は DOP と USD で表示されます。",
+            faq4Q: "4. 独自ドメインを使用できますか？",
+            faq4A: "はい。ドメインを連携し、SEO 用のサイトマップと構造化データを生成できます。",
+            faq5Q: "5. 開始にクレジットカードは必要ですか？",
+            faq5A: "いいえ。トライアルは無料です。",
+            faq6Q: "6. WhatsApp Business Cloud API に対応していますか？",
+            faq6A: "はい、オプトインおよび24時間ウィンドウのポリシーに準拠しています。",
+            faq7Q: "7. 現在のカタログをインポートできますか？",
+            faq7A: "はい、Excel または CSV からインポートできます。",
+            faq8Q: "8. EasyListings は個人エージェント向けですか、代理店向けですか？",
+            faq8A: "両方です。独立したエージェント、代理店、ブローカー向けのプランがあります。",
+
+            footer_tagline: "物件を見せよう。ブランドを定義しよう。",
+            footer_col_about: "製品",
+            footer_col_community: "コミュニティ",
+            footer_col_features: "機能",
+            footer_about_us: "会社概要",
+            footer_terms: "利用規約",
+            footer_privacy: "プライバシー",
+            footer_contact: "お問い合わせ",
+            footer_help: "ヘルプセンター",
+            footer_affiliates: "アフィリエイト",
+            footer_blog: "ブログ",
+            "foot-payment-title": "安全な決済処理",
+            support_title: "オンラインサポート",
+            support_text: "ご質問があればお問い合わせください。私たちのチームがサポートします。",
+            support_cta: "メッセージを送る",
+            footer_credit: "🇩🇴 にて Bebell Digital Solutions が制作。",
+            footer_copyright: "Copyright © 2026 EasyListings • All rights reserved.",
+            reveal_tagline: "物件を見せよう。ブランドを定義しよう。"
+        }
+    };
+
+    const SUPPORTED_LANGS = ['es', 'en','fr','it','de','ru','zh','ja',];
+    const LANG_META = {
+        es: { flag: '🇩🇴', code: 'ES' },
+        en: { flag: '🇺🇸', code: 'EN' },
+        fr: { flag: '🇫🇷', code: 'FR' },
+        it: { flag: '🇮🇹', code: 'IT' },
+        de: { flag: '🇩🇪', code: 'DE' },
+        ru: { flag: '🇷🇺', code: 'RU' },
+        zh: { flag: '🇨🇳', code: 'ZH' },
+        ja: { flag: '🇯🇵', code: 'JA' },
+    };
+
+    let currentLang = 'es';
+
+    /* ==========================================================================
+       2. LANGUAGE APPLICATION
+       ========================================================================== */
+    function setLanguage(lang) {
+        const requested = (lang || 'es').toLowerCase();
+        const effective = SUPPORTED_LANGS.includes(requested) ? requested : 'en';
+        const dict = I18N[effective];
+
+        currentLang = effective;
+        document.documentElement.setAttribute('lang', effective);
+
+        // Update title
+        if (dict.metaTitle) document.title = dict.metaTitle;
+
+        // Update all [data-i18n] elements
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (dict[key] !== undefined) {
+                if (el.hasAttribute('data-i18n-html')) {
+                    el.innerHTML = dict[key];
+                } else {
+                    el.textContent = dict[key];
+                }
+            }
+        });
+
+        // Update dropdown display
+        const flagEl = document.getElementById('currentFlag');
+        const codeEl = document.getElementById('currentCode');
+        if (flagEl && codeEl) {
+            const meta = LANG_META[requested] || LANG_META.es;
+            flagEl.textContent = meta.flag;
+            codeEl.textContent = meta.code;
+        }
+
+        // Update selected state on options
+        document.querySelectorAll('.lang-option').forEach(opt => {
+            const optLang = (opt.getAttribute('data-lang') || '').toLowerCase();
+            const li = opt.closest('li');
+            if (li) li.setAttribute('aria-selected', optLang === requested ? 'true' : 'false');
+        });
+
+        try { localStorage.setItem('language', requested); } catch (_) {}
+    }
+
+
+
+
+    /* ==========================================================================
+       3. THEME (dark/light)
+       ========================================================================== */
+    function setTheme(isDark) {
+        const html = document.documentElement;
+        const body = document.body;
+        const icon = document.querySelector('#darkModeToggle i');
+
+        if (isDark) {
+            html.setAttribute('data-theme', 'dark');
+            body.classList.add('dark-mode');
+            if (icon) { icon.classList.remove('fa-moon'); icon.classList.add('fa-sun'); }
+            try { localStorage.setItem('theme', 'dark'); } catch (_) {}
+        } else {
+            html.removeAttribute('data-theme');
+            body.classList.remove('dark-mode');
+            if (icon) { icon.classList.remove('fa-sun'); icon.classList.add('fa-moon'); }
+            try { localStorage.setItem('theme', 'light'); } catch (_) {}
+        }
+    }
+    
+    
+    
+
+    /* ==========================================================================
+       4. FAQ ACCORDION (globally available to inline onclick)
+       ========================================================================== */
+    function toggleFaq(index) {
+        for (let i = 0; i < 8; i++) {
+            const ans = document.getElementById(`faq-ans-${i}`);
+            const icon = document.getElementById(`faq-icon-${i}`);
+            if (!ans || !icon) continue;
+            const btn = ans.previousElementSibling;
+            if (i === index) {
+                const isHidden = ans.classList.contains('hidden');
+                ans.classList.toggle('hidden');
+                icon.classList.toggle('rotate-180', isHidden);
+                if (btn) btn.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+            } else {
+                ans.classList.add('hidden');
+                icon.classList.remove('rotate-180');
+                if (btn) btn.setAttribute('aria-expanded', 'false');
+            }
+        }
+    }
+
+
+
+
+
+
+
+    /* ==========================================================================
+       5. INFO MODAL STUB (referenced by onclick handlers for sections without modals)
+       ========================================================================== */
+    function openInfoModal(type) {
+        // Modal container is not present in this build — graceful no-op
+        // (kept as global so existing onclick handlers don't throw)
+        console.log('[openInfoModal]', type);
+    }
+    
+    
+    
+
+    /* ==========================================================================
+       6. ANALYTICS TRACKING
+       ========================================================================== */
+    function trackCustomEvent(eventName, params = {}) {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: eventName, language: currentLang, ...params });
+    }
+    
+    
+    
+
+    /* ==========================================================================
+       7. BOOT
+       ========================================================================== */
+    document.addEventListener('DOMContentLoaded', function () {
+
+        /* ---------- LANGUAGE ---------- */
+        let savedLang = 'es';
+        try { savedLang = localStorage.getItem('language') || 'es'; } catch (_) {}
+        // Check ?lang= query param override
+        const urlParams = new URLSearchParams(window.location.search);
+        const urlLang = urlParams.get('lang');
+        if (urlLang) savedLang = urlLang.toLowerCase();
+        setLanguage(savedLang);
+        
+        
+        
+        
+
+        /* ---------- THEME ---------- */
+        let savedTheme = 'light';
+        try { savedTheme = localStorage.getItem('theme') || 'light'; } catch (_) {}
+        setTheme(savedTheme === 'dark');
+
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        if (darkModeToggle) {
+            darkModeToggle.addEventListener('click', () => {
+                const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+                setTheme(!isDark);
+            });
+        }
+
+
+
+        /* ---------- TOP MENU SCROLL + BACK TO TOP ---------- */
+        const topMenuBar = document.getElementById('topMenuBar');
+        const backToTopBtn = document.getElementById('backToTopBtn');
+
+        function updateTopMenu() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (topMenuBar) {
+                if (scrollTop > 50) topMenuBar.classList.add('full-width');
+                else topMenuBar.classList.remove('full-width');
+            }
+            if (backToTopBtn) {
+                if (scrollTop > 300) backToTopBtn.classList.add('show');
+                else backToTopBtn.classList.remove('show');
+            }
+        }
+        window.addEventListener('scroll', updateTopMenu, { passive: true });
+        updateTopMenu();
+
+        if (backToTopBtn) {
+            backToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        }
+
+        /* ---------- SUBMENU ---------- */
+        const funcionesNavItem = document.getElementById('funcionesNavItem');
+        const funcionesToggle = document.getElementById('funcionesToggle');
+
+        function closeSubmenu() {
+            if (!funcionesNavItem || !funcionesToggle) return;
+            funcionesNavItem.classList.remove('open');
+            funcionesToggle.setAttribute('aria-expanded', 'false');
+        }
+
+        if (funcionesNavItem && funcionesToggle) {
+            funcionesToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const isOpen = funcionesNavItem.classList.toggle('open');
+                funcionesToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!funcionesNavItem.contains(e.target)) closeSubmenu();
+            });
+
+            document.querySelectorAll('.submenu-link').forEach(link => {
+                link.addEventListener('click', closeSubmenu);
+            });
+        }
+
+        /* ---------- LANGUAGE DROPDOWN ---------- */
+        const langDropdown = document.getElementById('langDropdown');
+        const langTrigger = document.getElementById('langTrigger');
+        const langMenu = document.getElementById('langMenu');
+
+        function toggleLangDropdown(open) {
+            if (!langDropdown || !langTrigger) return;
+            const willOpen = open ?? !langDropdown.classList.contains('open');
+            langDropdown.classList.toggle('open', willOpen);
+            langTrigger.setAttribute('aria-expanded', String(willOpen));
+        }
+
+        if (langTrigger) {
+            langTrigger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleLangDropdown();
+            });
+        }
+
+        if (langMenu) {
+            langMenu.querySelectorAll('.lang-option').forEach(option => {
+                option.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const lang = (option.getAttribute('data-lang') || 'es').toLowerCase();
+                    setLanguage(lang);
+                    toggleLangDropdown(false);
+                });
+            });
+        }
+
+        document.addEventListener('click', (e) => {
+            if (langDropdown && !langDropdown.contains(e.target)) toggleLangDropdown(false);
+        });
+
+        /* ---------- VIDEO MODAL ---------- */
+        const videoModal = document.getElementById('youtubeVideoModal');
+        const openVideoBtn = document.getElementById('openVideoModal');
+        const closeVideoBtn = document.getElementById('closeYoutubeModal');
+        const youtubePlayer = document.getElementById('youtubePlayer');
+        const modalPricingButton = document.getElementById('modalPricingButton');
+        const youtubeVideoId = 'dQw4w9WgXcQ';
+
+        function openVideo() {
+            if (!videoModal || !youtubePlayer) return;
+            youtubePlayer.src = `https://www.youtube.com/embed/${youtubeVideoId}?autoplay=1`;
+            videoModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeVideo() {
+            if (!videoModal || !youtubePlayer) return;
+            videoModal.classList.remove('active');
+            youtubePlayer.src = '';
+            document.body.style.overflow = '';
+        }
+
+        if (openVideoBtn) openVideoBtn.addEventListener('click', openVideo);
+        if (closeVideoBtn) closeVideoBtn.addEventListener('click', closeVideo);
+        if (modalPricingButton) modalPricingButton.addEventListener('click', closeVideo);
+
+        if (videoModal) {
+            videoModal.addEventListener('click', (e) => {
+                if (e.target === videoModal) closeVideo();
+            });
+        }
+
+        /* ---------- GLOBAL ESCAPE ---------- */
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeSubmenu();
+                closeVideo();
+                if (langDropdown && langDropdown.classList.contains('open')) {
+                    toggleLangDropdown(false);
+                    langTrigger && langTrigger.focus();
+                }
+            }
+        });
+
+        /* ---------- HORIZONTAL SCROLL TRACK (blog cards) ---------- */
+        const scrollContainer = document.getElementById('scroll-container');
+        if (scrollContainer) {
+            scrollContainer.addEventListener('wheel', (evt) => {
+                if (window.innerWidth >= 768) {
+                    const maxScrollLeft = scrollContainer.scrollWidth - scrollContainer.clientWidth;
+                    const isScrollingRight = evt.deltaY > 0;
+                    const isScrollingLeft = evt.deltaY < 0;
+                    if ((isScrollingRight && scrollContainer.scrollLeft >= maxScrollLeft - 1) ||
+                        (isScrollingLeft && scrollContainer.scrollLeft <= 0)) {
+                        return;
+                    }
+                    evt.preventDefault();
+                    scrollContainer.scrollLeft += evt.deltaY;
+                }
+            });
+        }
+
+        /* ---------- GSAP SCROLLTRIGGER ---------- */
+        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReduced || typeof gsap === 'undefined') return;
+
+        if (typeof ScrollTrigger !== 'undefined') gsap.registerPlugin(ScrollTrigger);
+
+        gsap.utils.toArray('.gsap-reveal').forEach((el) => {
+            gsap.from(el, {
+                y: 36,
+                opacity: 0,
+                duration: 0.75,
+                ease: 'power2.out',
+                scrollTrigger: { trigger: el, start: 'top 86%', once: true }
+            });
+        });
+
+        gsap.utils.toArray('.stat-counter').forEach((counter) => {
+            const target = parseInt(counter.getAttribute('data-target'), 10) || 0;
+            const obj = { val: 0 };
+            gsap.to(obj, {
+                val: target,
+                duration: 1.8,
+                ease: 'power2.out',
+                scrollTrigger: { trigger: counter, start: 'top 88%', once: true },
+                onUpdate: () => {
+                    counter.textContent = Math.round(obj.val).toLocaleString('en-US');
+                }
+            });
+        });
+
+
+
+        /* ---------- CURSOR FOLLOWER (desktop, pointer fine) ---------- */
+        if (window.matchMedia('(pointer: fine)').matches) {
+            const follower = document.getElementById('cursor-follower');
+            if (follower) {
+                follower.classList.remove('opacity-0');
+                const xTo = gsap.quickTo(follower, 'x', { duration: 0.4, ease: 'power3' });
+                const yTo = gsap.quickTo(follower, 'y', { duration: 0.4, ease: 'power3' });
+                window.addEventListener('mousemove', (e) => {
+                    xTo(e.clientX - 12);
+                    yTo(e.clientY - 12);
+                }, { passive: true });
+            }
+        }
+    });
+    
+    
+    
+
+    /* ==========================================================================
+       8. STACKED NOTIFICATION DECK (reveal on scroll + cycle layers)
+       ========================================================================== */
+    (function () {
+        const stage = document.querySelector('.device-stage');
+        const stack = document.getElementById('notificationStack');
+        const phone = document.getElementById('phoneMockup');
+        if (!stage || !stack) return;
+
+        const cards = Array.from(stack.querySelectorAll('.notif-card'));
+        if (!cards.length) return;
+
+        cards.forEach((card, i) => { card.dataset.layer = String(i + 1); });
+
+        let cycleTimer = null;
+        const CYCLE_MS = 3200;
+
+        function rotateLayers() {
+            const sorted = [...cards].sort((a, b) => Number(a.dataset.layer) - Number(b.dataset.layer));
+            const [front, middle, back] = sorted;
+            back.dataset.layer = '1';
+            front.dataset.layer = '2';
+            middle.dataset.layer = '3';
+        }
+
+        function startCycle() {
+            if (cycleTimer) return;
+            cycleTimer = setInterval(rotateLayers, CYCLE_MS);
+        }
+
+        function reveal() {
+            stack.classList.add('is-visible');
+            if (phone) phone.classList.add('is-visible');
+            startCycle();
+        }
+
+        if ('IntersectionObserver' in window) {
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        reveal();
+                        io.disconnect();
+                    }
+                });
+            }, { threshold: 0.25 });
+            io.observe(stage);
+        } else {
+            const onScroll = () => {
+                const rect = stage.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.75) {
+                    reveal();
+                    window.removeEventListener('scroll', onScroll);
+                }
+            };
+            window.addEventListener('scroll', onScroll, { passive: true });
+            onScroll();
+        }
+    })();
+    </script>
+
+</body>
+</html>

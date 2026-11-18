@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Easy Listings - Sign In</title>
+
+    <!-- === FAVICON Y ICONOS DE APLICACIÓN === -->
+    <link rel="icon" type="image/x-icon" href="https://ik.imagekit.io/bebell/Easy%20Listings/Branding/EasyListings.webp">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://ik.imagekit.io/bebell/Easy%20Listings/Branding/EasyListings.webp">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://ik.imagekit.io/bebell/Easy%20Listings/Branding/EasyListings.webp">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://ik.imagekit.io/bebell/Easy%20Listings/Branding/EasyListings.webp">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="sitio web">
+    <meta property="og:url" content="https://easylistings.website/">
+    <meta property="og:title" content="Easy Listings - Exhibe Tus Propiedades. Define Tu Marca.">
+    <meta property="og:description" content="Convierte tus fotos caóticas de propiedades en un catálogo impresionante y optimizado para móviles que captura leads automáticamente.">
+    <meta property="og:image" content="https://ik.imagekit.io/bebell/Easy%20Listings/Branding/easylistings-socialshare.webp">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://easylistings.website/">
+    <meta property="twitter:title" content="Easy Listings - Exhibe Tus Propiedades. Define Tu Marca.">
+    <meta property="twitter:description" content="Convierte tus fotos caóticas de propiedades en un catálogo impresionante y optimizado para móviles que captura leads automáticamente.">
+    <meta property="twitter:image" content="https://ik.imagekit.io/bebell/Easy%20Listings/Branding/easylistings-socialshare.webp">
+
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Load Inter Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind Configuration for Custom Colors & Fonts -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            pink: '#df1783',
+                            pinkHover: '#c21470',
+                            bg: '#fafafa',
+                            darkBtn: '#0f172a'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<!-- UPDATED BODY: Light background with overflow hidden to contain the glow circles -->
+<body class="bg-slate-50 min-h-screen flex items-center justify-center p-4 font-sans antialiased text-gray-900 relative overflow-hidden">
+    
+
+    
+
+    <!-- Main Container -->
+    <div class="w-full max-w-[400px] relative z-10">
+        
+        <!-- Header Section -->
+        <div class="flex justify-between items-center mb-4 px-1">
+            <!-- Brand & Logo -->
+            <div class="flex items-center cursor-pointer group">
+                <img 
+                    src="https://ik.imagekit.io/bebell/Easy%20Listings/Branding/EasyListings.webp?updatedAt=1793038323330" 
+                    alt="Easy Listings Logo" 
+                    class="w-7 h-7 object-contain mr-2 group-hover:scale-105 transition-transform duration-300"
+                    onerror="this.src='https://placehold.co/32x32/df1783/ffffff?text=EL'"
+                >
+                <span class="text-[22px] font-extrabold tracking-tight text-gray-900">Easy<span class="text-brand-pink">Listings</span></span>
+            </div>
+
+            <!-- Language Dropdown -->
+            <div class="relative inline-block text-left" id="language-dropdown-wrapper">
+  
+              <!-- Toggle Button -->
+              <button 
+                type="button" 
+                onclick="document.getElementById('language-menu').classList.toggle('hidden'); event.stopPropagation();" 
+                class="inline-flex items-center justify-between gap-2 bg-white border border-slate-200 text-slate-700 text-[13px] font-bold px-3 py-1.5 rounded-lg hover:bg-slate-50 transition-colors shadow-sm focus:outline-none"
+              >
+                <span class="text-[16px] leading-none">🇩🇴</span>
+                <span>ES</span>
+                <!-- Chevron -->
+                <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+
+              <!-- Dropdown Menu -->
+              <div 
+                id="language-menu" 
+                class="hidden absolute right-0 mt-2 w-[200px] origin-top-right bg-white border border-slate-200 rounded-xl shadow-xl focus:outline-none z-50 overflow-hidden py-1"
+              >
+                <!-- Spanish Option (Active) -->
+                <button type="button" class="w-full text-left px-4 py-3 flex items-center justify-between hover:bg-slate-50 transition-colors bg-slate-50/50">
+                  <div class="flex items-center gap-3">
+                    <span class="text-[20px] leading-none">🇩🇴</span>
+                    <span class="text-[13px] font-semibold text-slate-400 w-6">ES</span>
+                  </div>
+                  <span class="text-[15px] font-bold text-slate-900">Español</span>
+                </button>
+
+                <!-- English Option -->
+                <button type="button" class="w-full text-left px-4 py-3 flex items-center justify-between hover:bg-slate-50 transition-colors">
+                  <div class="flex items-center gap-3">
+                    <span class="text-[20px] leading-none">🇺🇸</span>
+                    <span class="text-[13px] font-semibold text-slate-400 w-6">EN</span>
+                  </div>
+                  <span class="text-[15px] font-medium text-slate-700">English</span>
+                </button>
+              </div>
+            </div>
+
+        </div>
+
+        <!-- Login Card -->
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-xl shadow-slate-200/50 p-6 sm:p-8">
+            <h1 class="text-[22px] font-bold text-gray-900 mb-6">Sign in</h1>
+
+            <form onsubmit="event.preventDefault();" class="space-y-4">
+                <!-- Email Input -->
+                <div>
+                    <label for="email" class="block text-sm text-gray-600 mb-1.5">Email</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2.5 outline-none focus:border-brand-pink focus:ring-1 focus:ring-brand-pink transition-all duration-200"
+                        placeholder=""
+                        required
+                    >
+                </div>
+
+                <!-- Password Input -->
+                <div>
+                    <label for="password" class="block text-sm text-gray-600 mb-1.5">Password</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2.5 outline-none focus:border-brand-pink focus:ring-1 focus:ring-brand-pink transition-all duration-200"
+                        placeholder=""
+                        required
+                    >
+                </div>
+
+                <!-- Submit Button -->
+                <button 
+                    type="submit" 
+                    class="w-full mt-6 bg-brand-pink text-white font-bold py-3 rounded-lg shadow-sm hover:bg-brand-pinkHover hover:-translate-y-0.5 hover:shadow-md active:scale-[0.98] transition-all duration-200"
+                >
+                    Sign in
+                </button>
+            </form>
+
+            <!-- Footer -->
+            <div class="mt-6 text-center text-sm text-gray-600">
+                New to Easy Listings? 
+                <a href="#" class="text-brand-pink font-bold hover:underline hover:text-brand-pinkHover transition-colors duration-200">
+                    Create your catalog
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Script to close dropdown when clicking outside -->
+    <script>
+      document.addEventListener('click', function(event) {
+        const wrapper = document.getElementById('language-dropdown-wrapper');
+        const menu = document.getElementById('language-menu');
+        if (wrapper && !wrapper.contains(event.target)) {
+          menu.classList.add('hidden');
+        }
+      });
+    </script>
+
+</body>
+</html>
